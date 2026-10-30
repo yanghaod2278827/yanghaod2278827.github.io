@@ -1,0 +1,17 @@
+{{ define "main" }}
+<header class="section-head">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="section-intro">{{ . }}</div>{{ end }}
+</header>
+
+<div class="grid">
+{{ range hugo.Data.projects }}
+  <a class="card" href="{{ .url }}" target="_blank" rel="noopener">
+    <h3>{{ .name }}</h3>
+    {{ with .description }}<p>{{ . }}</p>{{ end }}
+    <span class="card-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ . }}{{ end }}</span>
+  </a>
+{{ end }}
+</div>
+{{ if not hugo.Data.projects }}<p class="empty">还没有项目数据，运行 <code>python3 scripts/fetch_data.py</code> 生成。</p>{{ end }}
+{{ end }}

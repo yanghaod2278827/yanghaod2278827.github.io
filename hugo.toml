@@ -1,0 +1,49 @@
+baseURL = "https://yanghaod2278827.github.io/"
+locale = "zh-cn"
+defaultContentLanguage = "zh"
+title = "杨浩"
+enableRobotsTXT = true
+
+# 文章 URL：/posts/2026/10/30/slug/
+[pagination]
+  pagerSize = 20
+
+[permalinks]
+  posts = "/posts/:year/:month/:slug/"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true          # 允许正文里写 HTML（README 风格的表格/图能直接粘）
+  [markup.highlight]
+    style = "github"
+
+[params]
+  description = "记录、笔记与一些小工具"
+  # 首页名片区的标题和副标题
+  tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
+  # 头像/图片，放在 static/ 下
+  avatar = ""
+  # 备案号（没有就留空）
+  icp = ""
+
+[menu]
+  [[menu.main]]
+    name = "博客"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "读书"
+    url = "/reading/"
+    weight = 2
+  [[menu.main]]
+    name = "笔记"
+    url = "/notebook/"
+    weight = 3
+  [[menu.main]]
+    name = "项目"
+    url = "/projects/"
+    weight = 4
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 5

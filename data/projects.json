@@ -1,0 +1,9 @@
+[
+  {
+    "name": "claude-statusline",
+    "url": "https://github.com/yanghaod2278827/claude-statusline",
+    "description": "A cost-aware status line for Claude Code when it runs against a third-party Anthropic-compatible API (DeepSeek, GLM, Kimi, OpenRouter...). Configurable price table, peak/off-peak billing, holidays, balance.",
+    "language": "Python",
+    "stars": 0
+  }
+]

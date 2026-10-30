@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>{{ site.Title }}</h1>
+  {{ with site.Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
+  {{ with hugo.Data.profile.links }}
+  <div class="links">
+    {{ range . }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+  </div>
+  {{ end }}
+</section>
+
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $reading := where site.RegularPages "Section" "reading" }}
+{{ $notebook := where site.RegularPages "Section" "notebook" }}
+<section class="stats">
+  <a class="stat" href="{{ "/posts/" | relURL }}">
+    <span class="num">{{ len $posts }}</span><span class="label">文章</span></a>
+  <a class="stat" href="{{ "/reading/" | relURL }}">
+    <span class="num">{{ len $reading }}</span><span class="label">读书笔记</span></a>
+  <a class="stat" href="{{ "/notebook/" | relURL }}">
+    <span class="num">{{ len $notebook }}</span><span class="label">技术笔记</span></a>
+  {{ with hugo.Data.github }}
+  <a class="stat" href="https://github.com/{{ .login }}" target="_blank" rel="noopener">
+    <span class="num">{{ .total_stars }}</span><span class="label">Star</span></a>
+  {{ end }}
+</section>
+
+{{ if $posts }}
+<section class="recent">
+  <h2>最近更新</h2>
+  <ul class="post-list">
+    {{ range first 10 $posts.ByDate.Reverse }}
+    <li><time>{{ .Date.Format "2006-01-02" }}</time><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+{{ end }}

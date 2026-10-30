@@ -1,0 +1,22 @@
+{{ define "main" }}
+<header class="section-head">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="section-intro">{{ . }}</div>{{ end }}
+</header>
+
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ if eq .Section "reading" }}{{ $pages = .Pages.ByTitle }}{{ end }}
+
+{{ range $pages }}
+<article class="post-item">
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <p class="meta">
+    {{ if ne .Section "reading" }}{{ .Date.Format "2006-01-02" }}{{ end }}
+    {{ with .Params.author }} · {{ . }}{{ end }}
+    {{ with .Params.summary }} · {{ . }}{{ end }}
+  </p>
+</article>
+{{ end }}
+
+{{ if not .Pages }}<p class="empty">还没有内容。</p>{{ end }}
+{{ end }}
