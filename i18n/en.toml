@@ -1,0 +1,23 @@
+[recentUpdates]
+other = "Recent updates"
+
+[statPosts]
+other = "Posts"
+
+[statReading]
+other = "Reading notes"
+
+[statNotes]
+other = "Notes"
+
+[statStars]
+other = "Stars"
+
+[emptySection]
+other = "Nothing here yet."
+
+[emptyProjects]
+other = "No project data yet — run python3 scripts/fetch_data.py."
+
+[langSwitchLabel]
+other = "Language"

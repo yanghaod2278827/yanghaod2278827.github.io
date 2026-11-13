@@ -1,0 +1,23 @@
+[recentUpdates]
+other = "最近更新"
+
+[statPosts]
+other = "文章"
+
+[statReading]
+other = "读书笔记"
+
+[statNotes]
+other = "技术笔记"
+
+[statStars]
+other = "Star"
+
+[emptySection]
+other = "还没有内容。"
+
+[emptyProjects]
+other = "还没有项目数据，运行 python3 scripts/fetch_data.py 生成。"
+
+[langSwitchLabel]
+other = "语言"

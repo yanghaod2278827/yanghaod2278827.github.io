@@ -13,5 +13,5 @@
   </a>
 {{ end }}
 </div>
-{{ if not hugo.Data.projects }}<p class="empty">还没有项目数据，运行 <code>python3 scripts/fetch_data.py</code> 生成。</p>{{ end }}
+{{ if not hugo.Data.projects }}<p class="empty">{{ i18n "emptyProjects" }}</p>{{ end }}
 {{ end }}

@@ -1,9 +1,27 @@
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <a class="site-title" href="{{ "" | relLangURL }}">{{ site.Title }}</a>
     <nav class="site-nav">
       {{ range site.Menus.main }}
-        <a href="{{ .URL | relURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a>
+        <a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+      {{ if hugo.IsMultilingual }}
+      {{ $cur := . }}
+      <span class="lang-switch" aria-label="{{ i18n "langSwitchLabel" }}">
+        {{ range hugo.Sites }}
+          {{ $s := . }}
+          {{/* 有对应译文就直接跳过去，没有就落到该语言首页 */}}
+          {{ $url := $s.Home.RelPermalink }}
+          {{ if eq $s.Language.Lang $cur.Language.Lang }}
+            {{ $url = $cur.RelPermalink }}
+          {{ else }}
+            {{ range $cur.Translations }}
+              {{ if eq .Language.Lang $s.Language.Lang }}{{ $url = .RelPermalink }}{{ end }}
+            {{ end }}
+          {{ end }}
+          <a href="{{ $url }}" lang="{{ $s.Language.Lang }}" hreflang="{{ $s.Language.Lang }}"{{ if eq $s.Language.Lang $cur.Language.Lang }} class="active"{{ end }}>{{ $s.Language.Label }}</a>
+        {{ end }}
+      </span>
       {{ end }}
     </nav>
   </div>
