@@ -1,6 +1,7 @@
 ---
 title: 示例：怎么在这里写读书笔记
 slug: example-note
+draft: true
 date: 2026-10-30
 author: 作者名
 summary: 这是一篇占位笔记——看完可以删掉。

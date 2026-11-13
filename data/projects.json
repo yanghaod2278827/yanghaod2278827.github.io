@@ -5,5 +5,19 @@
     "description": "A cost-aware status line for Claude Code when it runs against a third-party Anthropic-compatible API (DeepSeek, GLM, Kimi, OpenRouter...). Configurable price table, peak/off-peak billing, holidays, balance.",
     "language": "Python",
     "stars": 0
+  },
+  {
+    "name": "claude-worklog-dida",
+    "url": "https://github.com/yanghaod2278827/claude-worklog-dida",
+    "description": "Evidence-based daily work journal for Claude Code: transcripts + filesystem changes -> Dida365 completed tasks -> Obsidian diary. Windows-first.",
+    "language": "Python",
+    "stars": 0
+  },
+  {
+    "name": "yanghaod2278827.github.io",
+    "url": "https://github.com/yanghaod2278827/yanghaod2278827.github.io",
+    "description": "Personal site: posts, notes, and a data-driven homepage",
+    "language": "CSS",
+    "stars": 0
   }
 ]
