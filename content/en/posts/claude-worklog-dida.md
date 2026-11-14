@@ -3,7 +3,7 @@ title: Turning a day's work into completed tasks, automatically
 slug: claude-worklog-dida
 date: 2026-11-13
 tags: ["Claude Code", "Tools", "Automation"]
-summary: Transcripts only contain conversations with Claude, but most of a day happens in Word, Origin, or an SEM. The missing half has to come from file timestamps.
+summary: Transcripts only contain conversations with Claude, but most of a day happens in Word, Origin, or MATLAB. The missing half has to come from file timestamps.
 ---
 
 After a while of using Claude Code, a need appeared: **knowing what I actually did today**. Not for reporting — because after a week I often can't remember which things moved.
@@ -26,7 +26,7 @@ The pipeline runs hourly: scheduler → extract transcripts + scan files → one
 
 There's exactly one design rule: **the orchestrator does no judging; all of it is delegated to that single model call, with the rules living in `worklog_prompt.zh.md`.** How to categorise, how to set times, which items are the same task — all of that is the prompt's business. Change the behaviour by editing the prompt, not the code. I only understood this on the second version; the first one baked a pile of heuristics into Python, and every adjustment felt like surgery.
 
-Reverse sync exists too: if I hand-write "checked the sapphire cutting-force data this morning" in the diary, the script fills that in as a completed task, instead of letting two records disagree with each other.
+Reverse sync exists too: if I hand-write "checked yesterday's experimental data this morning" in the diary, the script fills that in as a completed task, instead of letting two records disagree with each other.
 
 ## The numbers are computed
 
