@@ -15,7 +15,10 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  # 2026-11-18 改为 false：每天 22:00 的定时构建会把正在跑的 push 构建顶掉，
+  # 导致「提交推上去了但看不到自己的部署记录」。改成排队执行，最后一次构建的
+  # 一定是最新提交（GitHub 每组只保留一个排队位，更早的排队仍会被新任务替换）。
+  cancel-in-progress: false
 
 defaults:
   run:
