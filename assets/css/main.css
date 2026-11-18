@@ -536,6 +536,14 @@ html.dark .cover-tag {
   letter-spacing: -0.025em;
 }
 
+.post-subtitle {
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--line);
+  color: var(--fg-2);
+  font-size: 1.02rem;
+}
+
 .post-head .meta {
   display: flex;
   flex-wrap: wrap;

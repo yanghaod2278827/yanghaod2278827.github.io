@@ -1,12 +1,17 @@
 {{ define "main" }}
+{{ $sec := .CurrentSection }}
+{{ $isRootPage := or (not $sec) (eq $sec.Kind "home") }}
 <article class="post">
   <header class="post-head">
     <h1>{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="post-subtitle">{{ . }}</p>{{ end }}
+    {{ if not $isRootPage }}
     <p class="meta">
       {{ if not .Date.IsZero }}<span>{{ .Date.Format "2006-01-02" }}</span>{{ end }}
-      {{ with .CurrentSection }}<span>·</span><span>{{ .Title }}</span>{{ end }}
+      {{ with $sec }}<span>·</span><span>{{ .Title }}</span>{{ end }}
       {{ with .Params.tags }}<span>·</span><span>{{ delimit . " · " }}</span>{{ end }}
     </p>
+    {{ end }}
   </header>
   <div class="post-body">
     {{ .Content }}
