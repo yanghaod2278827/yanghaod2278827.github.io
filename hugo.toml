@@ -49,7 +49,7 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
     [[languages.zh.menu.main]]
       name = "读书"
       url = "/reading/"
-      weight = 2
+      weight = 5
     [[languages.zh.menu.main]]
       name = "笔记"
       url = "/notebook/"
@@ -57,11 +57,11 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
     [[languages.zh.menu.main]]
       name = "项目"
       url = "/projects/"
-      weight = 4
+      weight = 2
     [[languages.zh.menu.main]]
       name = "观影"
       url = "/movies/"
-      weight = 5
+      weight = 4
     [[languages.zh.menu.main]]
       name = "关于"
       url = "/about/"
@@ -89,7 +89,7 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
     [[languages.en.menu.main]]
       name = "Reading"
       url = "/reading/"
-      weight = 2
+      weight = 5
     [[languages.en.menu.main]]
       name = "Notes"
       url = "/notebook/"
@@ -97,11 +97,11 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
     [[languages.en.menu.main]]
       name = "Projects"
       url = "/projects/"
-      weight = 4
+      weight = 2
     [[languages.en.menu.main]]
       name = "Movies"
       url = "/movies/"
-      weight = 5
+      weight = 4
     [[languages.en.menu.main]]
       name = "About"
       url = "/about/"
