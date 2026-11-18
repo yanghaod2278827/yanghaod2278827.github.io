@@ -12,6 +12,7 @@
     <div class="tl-meta">
       <span class="tl-source">{{ .source_label }}</span>
       {{ with .date }}<time>{{ . }}</time>{{ end }}
+      {{ with .count }}{{ if gt . 1 }}<span class="tl-count">×{{ . }}</span>{{ end }}{{ end }}
     </div>
     {{ with .title }}<h2 class="card-title">{{ . }}</h2>{{ end }}
     {{ with .text }}<p class="tl-text">{{ . }}</p>{{ end }}

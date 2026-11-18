@@ -33,6 +33,7 @@ SOURCES = [
     # 豆瓣广播路由只认整数型 id（字母型 d2278827 会 404）：
     # 从 https://www.douban.com/people/<id>/ 的头像链接 ul122411510-*.jpg 取 122411510
     {'key': 'douban', 'label': '豆瓣', 'route': '/douban/people/122411510/status'},
+    {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827'},
 ]
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -50,7 +51,7 @@ def localize(iso):
         return iso[:16].replace('T', ' ')
 
 
-def fetch(route, per_source):
+def fetch(route, per_source, source=''):
     url = '%s%s?format=json&limit=%d' % (BASE, route, per_source)
     req = urllib.request.Request(url, headers={'User-Agent': 'personal-site-activity/1.0'})
     with urllib.request.urlopen(req, timeout=60) as r:
@@ -75,6 +76,13 @@ def fetch(route, per_source):
         if not text and not film:
             text = raw_title
 
+        # GitHub 的 activity 事件标题是「<user> pushed <repo>」且同一仓库一天会连发多条，
+        # 这里统一成仓库名，正文留空，后面再按 (源, 标题, 日期) 合并计数
+        if source == 'github':
+            m_repo = re.search(r'github\.com/[^/]+/([^/]+)', it.get('url') or '')
+            if m_repo:
+                title, text = m_repo.group(1), ''
+
         out.append({
             'title': title[:120],
             'film': film,
@@ -96,7 +104,7 @@ def main():
     merged, failed = [], []
     for s in SOURCES:
         try:
-            got = fetch(s['route'], a.per_source)
+            got = fetch(s['route'], a.per_source, s['key'])
             for it in got:
                 it['source'] = s['key']
                 it['source_label'] = s['label']
@@ -109,6 +117,21 @@ def main():
     if failed and not merged:
         print('all sources failed; keep old JSON')
         raise SystemExit(1)
+
+    def merge_same_day(items):
+        """同一源、同一标题、同一天的多条合并成一条，记 count。"""
+        seen, out = {}, []
+        for it in items:
+            k = (it.get('source'), it.get('title'), (it.get('date') or '')[:10])
+            if k in seen:
+                seen[k]['count'] = seen[k].get('count', 1) + 1
+                continue
+            it['count'] = 1
+            seen[k] = it
+            out.append(it)
+        return out
+
+    merged = merge_same_day(merged)
 
     def key(it):
         d = it.get('date') or ''

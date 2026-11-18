@@ -1,9 +1,54 @@
 {
   "updated": "2026-11-18",
   "sources": [
-    "douban"
+    "douban",
+    "github"
   ],
   "items": [
+    {
+      "title": "yanghaod2278827.github.io",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/yanghaod2278827.github.io/compare/e80a166fe9...ca07c005d7",
+      "date": "2026-11-14 08:40",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 1
+    },
+    {
+      "title": "yanghaod2278827.github.io",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/yanghaod2278827.github.io/compare/000e6bdee5...05b6e34b9a",
+      "date": "2026-11-13 23:12",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 3
+    },
+    {
+      "title": "claude-worklog-dida",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/claude-worklog-dida/compare/12353459d6...899c87ee06",
+      "date": "2026-11-12 17:13",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 2
+    },
+    {
+      "title": "claude-statusline",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/claude-statusline/releases/tag/v1.0.0",
+      "date": "2026-11-12 16:17",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 2
+    },
     {
       "title": "金玉满堂 金玉滿堂‎ (1995)",
       "film": "金玉满堂 金玉滿堂‎ (1995)",
@@ -12,7 +57,8 @@
       "date": "2026-11-11 22:50",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "小丑回魂：欢迎来到德里镇 第一季 IT: Welcome to Derry Season 1‎ (2025)",
@@ -22,7 +68,8 @@
       "date": "2026-11-09 22:03",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "无敌少侠 第四季 Invincible Season 4‎ (2026)",
@@ -32,7 +79,8 @@
       "date": "2026-11-09 22:03",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "龙之家族 第三季 House of the Dragon Season 3‎ (2026)",
@@ -42,7 +90,8 @@
       "date": "2026-11-09 22:02",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "太极张三丰 太極張三豐‎ (1993)",
@@ -52,7 +101,8 @@
       "date": "2026-11-09 22:02",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "泡泡糖女孩 Ah Girl‎ (2026)",
@@ -62,7 +112,8 @@
       "date": "2026-11-07 19:57",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "列宁格勒牛仔征美记 Leningrad Cowboys Go America‎ (1989)",
@@ -72,7 +123,8 @@
       "date": "2026-11-07 19:47",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "何处是我朋友的家 خانه دوست کجاست؟‎‎ (1987)",
@@ -82,7 +134,19 @@
       "date": "2026-11-05 21:12",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
+    },
+    {
+      "title": "billion-context",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/billion-context",
+      "date": "2026-11-05 08:55",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 1
     },
     {
       "title": "都灵之马 A torinói ló‎ (2011)",
@@ -92,7 +156,8 @@
       "date": "2026-11-04 22:46",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
     },
     {
       "title": "我的舅舅 Mon oncle‎ (1958)",
@@ -102,7 +167,30 @@
       "date": "2026-11-04 01:07",
       "image": "",
       "source": "douban",
-      "source_label": "豆瓣"
+      "source_label": "豆瓣",
+      "count": 1
+    },
+    {
+      "title": "claude-statusline",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/claude-statusline/compare/2d94b7f2bf...0000000000",
+      "date": "2026-10-30 16:09",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 2
+    },
+    {
+      "title": "yanghaod2278827",
+      "film": "",
+      "text": "",
+      "link": "https://github.com/yanghaod2278827/yanghaod2278827/compare/89c2facada...0389609382",
+      "date": "2026-10-30 16:06",
+      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
+      "source": "github",
+      "source_label": "GitHub",
+      "count": 4
     }
   ]
 }

@@ -843,3 +843,4 @@ html.dark .movie-poster {
 }
 
 .tl-link:hover { color: var(--fg); border-color: var(--fg); }
+.tl-count { color: var(--fg-3); font-size: 12px; }
