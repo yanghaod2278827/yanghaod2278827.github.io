@@ -3,6 +3,7 @@ title: 把一天的工作，自动变成已完成的任务
 slug: claude-worklog-dida
 date: 2026-11-13
 tags: ["Claude Code", "工具", "自动化"]
+categories: ["工具"]
 summary: 转录里只有和 Claude 的对话，可一天里大部分活是在 Word、Origin、MATLAB 里干的。缺的那一半，得从文件时间戳里找。
 ---
 

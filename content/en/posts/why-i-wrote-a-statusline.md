@@ -3,6 +3,7 @@ title: Why I wrote a status line for Claude Code
 slug: why-i-wrote-a-statusline
 date: 2026-10-30
 tags: ["Claude Code", "Tools", "Cost"]
+categories: ["Tools"]
 summary: The official cost figure was off from my real bill by 69×. That's not something I can ignore.
 ---
 

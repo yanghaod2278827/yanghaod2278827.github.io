@@ -1,0 +1,12 @@
+{{/* 封面：front matter 有 cover 就用图；没有就用标题生成一张字母标封面（色相由标题哈希决定，同一篇文章永远同色） */}}
+{{ with .Params.cover }}
+  <img class="cover" src="{{ . | relURL }}" alt="" loading="lazy">
+{{ else }}
+  {{ $hue := mod (hash.FNV32a .Title) 360 }}
+  {{ $label := .Section }}
+  {{ with .Params.categories }}{{ $label = index . 0 }}{{ end }}
+  <span class="cover-art" style="--h: {{ $hue }}" aria-hidden="true">
+    <span class="cover-glyph">{{ substr .Title 0 1 }}</span>
+    <span class="cover-tag">{{ $label }}</span>
+  </span>
+{{ end }}

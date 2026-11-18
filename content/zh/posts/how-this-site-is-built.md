@@ -3,6 +3,7 @@ title: 这个站点是怎么搭的
 slug: how-this-site-is-built
 date: 2026-10-30
 tags: ["Hugo", "建站"]
+categories: ["建站"]
 summary: Hugo + GitHub Actions，页面上的数字全部由脚本生成。
 ---
 

@@ -1,10 +1,8 @@
-{{/* 双层虚线卡片：有 cover 走左图右文，没有就纯文字 */}}
-{{ $cover := .Params.cover }}
+{{/* 双层虚线卡片：左封面 + 右文字。封面见 post-cover.html（没有图时自动生成） */}}
 {{ $section := .Section }}
-{{ $sectionName := .CurrentSection.Title }}
-<a class="stack-card{{ with $cover }} has-cover{{ end }}" href="{{ .RelPermalink }}">
+<a class="stack-card has-cover" href="{{ .RelPermalink }}">
   <div class="card-inner">
-    {{ with $cover }}<img class="cover" src="{{ . | relURL }}" alt="" loading="lazy">{{ end }}
+    {{ partial "post-cover.html" . }}
     <div>
       <h3 class="card-title">
         <span>{{ .Title }}</span>
@@ -18,9 +16,17 @@
       <p class="card-meta">
         {{ if ne $section "reading" }}{{ .Date.Format "2006-01-02" }}{{ end }}
         {{ if ne $section "reading" }}<span class="dot">·</span>{{ end }}
-        <span>{{ $sectionName }}</span>
+        {{ with .Params.categories }}
+          {{ range first 1 . }}<span>{{ . }}</span><span class="dot">·</span>{{ end }}
+        {{ else }}
+          <span>{{ .CurrentSection.Title }}</span>
+        {{ end }}
+        {{ $cat := "" }}
+        {{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
         {{ with .Params.tags }}
-          {{ range first 3 . }}<span class="dot">·</span><span>#{{ . }}</span>{{ end }}
+          {{ range first 3 . }}
+            {{ if ne . $cat }}<span>#{{ . }}</span>{{ end }}
+          {{ end }}
         {{ end }}
       </p>
     </div>

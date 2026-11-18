@@ -3,6 +3,7 @@ title: 为什么我给 Claude Code 写了一个状态栏
 slug: why-i-wrote-a-statusline
 date: 2026-10-30
 tags: ["Claude Code", "工具", "成本"]
+categories: ["工具"]
 summary: 官方报的花费和真实账单差了 69 倍，这件事没法忍。
 ---
 

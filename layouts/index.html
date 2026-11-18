@@ -11,6 +11,13 @@
   {{ end }}
 </section>
 
+{{ with site.Params.bio }}
+<section class="bio-block">
+  <div class="bio-head"><span class="dot-light"></span><span>about.txt</span></div>
+  <pre class="bio-text">{{ . }}</pre>
+</section>
+{{ end }}
+
 {{ $reading := where site.RegularPages "Section" "reading" }}
 {{ $notebook := where site.RegularPages "Section" "notebook" }}
 <section class="stats">

@@ -30,3 +30,9 @@ other = "标签："
 
 [themeToggle]
 other = "切换昼夜"
+
+[categoriesLabel]
+other = "分类："
+
+[termCount]
+other = "共 {{ .n }} 篇"

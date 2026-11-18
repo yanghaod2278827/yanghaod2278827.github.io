@@ -3,6 +3,7 @@ title: How this site is built
 slug: how-this-site-is-built
 date: 2026-10-30
 tags: ["Hugo", "Blogging"]
+categories: ["Meta"]
 summary: Hugo plus GitHub Actions. Every number on a page is produced by a script.
 ---
 

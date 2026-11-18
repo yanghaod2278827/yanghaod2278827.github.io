@@ -30,3 +30,9 @@ other = "Tags:"
 
 [themeToggle]
 other = "Toggle theme"
+
+[categoriesLabel]
+other = "Categories:"
+
+[termCount]
+other = "{{ .n }} posts"
