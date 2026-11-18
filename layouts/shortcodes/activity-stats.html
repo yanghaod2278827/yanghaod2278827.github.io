@@ -1,0 +1,8 @@
+{{/* 正文里插入「动态」统计，数字来自 data/activity.json */}}
+{{ with hugo.Data.activity }}
+{{ $link := "activity/" | relLangURL }}
+<span class="activity-stats">{{ i18n "activityAbout" }}
+  <a href="{{ $link }}">{{ i18n "navActivity" }}</a>{{ i18n "activityAboutTail" (dict "n" (len .items)) }}</span>
+{{ else }}
+<span class="activity-stats">{{ i18n "activityMissing" }}</span>
+{{ end }}

@@ -69,3 +69,24 @@ other = "页，数据由脚本从豆瓣抓取。"
 
 [statMovies]
 other = "观影"
+
+[activitySource]
+other = "原文"
+
+[activityUpdated]
+other = "更新于"
+
+[activityMissing]
+other = "还没有动态数据，先跑 python3 scripts/fetch_activity.py（需要本机 RSSHub 在 1200 端口）"
+
+[activityBio]
+other = "最近动态 {{ .n }} 条 · 豆瓣广播等"
+
+[activityAbout]
+other = "其他平台的动态（豆瓣广播为主）也会同步到这里："
+
+[activityAboutTail]
+other = "，共 {{ .n }} 条，由本机 RSSHub 抓取。"
+
+[navActivity]
+other = "动态"

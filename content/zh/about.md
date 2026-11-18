@@ -13,6 +13,10 @@ title: 关于
 
 Hugo 构建、GitHub Actions 部署，页面上的数字全部由脚本从 GitHub 拉取，没有手填的。分类与标签计数、文章数也是构建时算的。源码在 [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io)。
 
+## 动态
+
+{{< activity-stats >}}
+
 ## 观影
 
 {{< douban-stats >}}

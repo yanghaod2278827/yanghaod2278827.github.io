@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{ $d := hugo.Data.activity }}
+<header class="section-head">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p class="section-intro">{{ . }}</p>{{ end }}
+</header>
+
+{{ with $d }}
+<div class="timeline">
+  {{ range .items }}
+  <article class="tl-item">
+    <div class="tl-meta">
+      <span class="tl-source">{{ .source_label }}</span>
+      {{ with .date }}<time>{{ . }}</time>{{ end }}
+    </div>
+    {{ with .title }}<h2 class="card-title">{{ . }}</h2>{{ end }}
+    {{ with .text }}<p class="tl-text">{{ . }}</p>{{ end }}
+    {{ with .link }}<a class="tl-link" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "activitySource" }} →</a>{{ end }}
+  </article>
+  {{ end }}
+</div>
+<p class="movie-more">
+  <span class="movie-updated">{{ i18n "activityUpdated" }} {{ .updated }}</span>
+</p>
+{{ else }}
+<p class="empty">{{ i18n "activityMissing" }}</p>
+{{ end }}
+{{ end }}

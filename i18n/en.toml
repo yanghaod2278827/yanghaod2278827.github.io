@@ -69,3 +69,24 @@ other = " page; the numbers are scraped by a script."
 
 [statMovies]
 other = "Movies"
+
+[activitySource]
+other = "Source"
+
+[activityUpdated]
+other = "Updated"
+
+[activityMissing]
+other = "No activity data yet — run python3 scripts/fetch_activity.py (needs a local RSSHub on port 1200)"
+
+[activityBio]
+other = "{{ .n }} recent activity items"
+
+[activityAbout]
+other = "Posts from other platforms (mostly Douban) land here too:"
+
+[activityAboutTail]
+other = " — {{ .n }} items, pulled by a local RSSHub."
+
+[navActivity]
+other = "Activity"
