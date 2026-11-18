@@ -14,6 +14,10 @@ subtitle: 只写和开源项目有关的事。
 
 Hugo 构建、GitHub Actions 部署，页面上的数字全部由脚本从 GitHub 拉取，没有手填的。分类与标签计数、文章数也是构建时算的。源码在 [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io)。
 
+## 观影
+
+{{< douban-stats >}}
+
 ## 联系
 
 邮件 [1936693568@qq.com](mailto:1936693568@qq.com)，或者在仓库里开 issue——邮件比社交媒体回得快。

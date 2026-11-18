@@ -14,6 +14,10 @@ I write small tools and open-source all of them on [GitHub](https://github.com/y
 
 Hugo, deployed by GitHub Actions. Every number on the page is fetched by a script from GitHub; article, category and tag counts are computed at build time. Source: [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io).
 
+## Movies
+
+{{< douban-stats >}}
+
 ## Contact
 
 Email [1936693568@qq.com](mailto:1936693568@qq.com), or open an issue in a repo — email is faster than social media.

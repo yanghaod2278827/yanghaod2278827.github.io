@@ -15,6 +15,12 @@
 <section class="bio-block">
   <div class="bio-head"><span class="dot-light"></span><span>about.txt</span></div>
   <pre class="bio-text">{{ . }}</pre>
+  {{ with hugo.Data.douban }}
+  <a class="bio-foot" href="{{ "movies/" | relLangURL }}">
+    <span>{{ i18n "doubanBio" (dict "watched" .stats.watched "wish" .stats.wish) }}</span>
+    <span aria-hidden="true">→</span>
+  </a>
+  {{ end }}
 </section>
 {{ end }}
 

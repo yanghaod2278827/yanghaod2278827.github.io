@@ -748,3 +748,20 @@ html.dark .movie-poster {
   .movie-poster { width: 58px; height: 84px; font-size: 20px; }
   .movie-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+/* bio 块底部：豆瓣观影入口 */
+.bio-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 18px;
+  border-top: 1px dashed var(--line);
+  color: var(--fg-2);
+  font-size: 13px;
+}
+
+.bio-foot:hover { color: var(--fg); background: var(--tile); }
+
+.douban-stats a { border-bottom: 1px dashed var(--fg-3); }
+.douban-stats a:hover { border-color: var(--fg); }

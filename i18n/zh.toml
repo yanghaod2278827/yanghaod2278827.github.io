@@ -54,3 +54,15 @@ other = "更新于"
 
 [doubanMissing]
 other = "还没有豆瓣数据，先跑 python3 scripts/fetch_douban.py"
+
+[doubanBio]
+other = "豆瓣看过 {{ .watched }} 部 · 想看 {{ .wish }} 部"
+
+[doubanAbout]
+other = "豆瓣上已经看过 {{ .watched }} 部电影，片单里还躺着 {{ .wish }} 部。最近的短评整理在"
+
+[doubanAboutLink]
+other = "观影"
+
+[doubanAboutTail]
+other = "页，数据由脚本从豆瓣抓取。"

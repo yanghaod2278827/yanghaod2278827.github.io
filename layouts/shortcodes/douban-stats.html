@@ -1,0 +1,8 @@
+{{/* 在正文里插入豆瓣观影统计，数字来自 data/douban.json（每次 fetch_douban.py 更新） */}}
+{{ with hugo.Data.douban }}
+{{ $link := "movies/" | relLangURL }}
+<span class="douban-stats">{{ i18n "doubanAbout" (dict "watched" .stats.watched "wish" .stats.wish) }}
+  <a href="{{ $link }}">{{ i18n "doubanAboutLink" }}</a>{{ i18n "doubanAboutTail" }}</span>
+{{ else }}
+<span class="douban-stats">{{ i18n "doubanMissing" }}</span>
+{{ end }}

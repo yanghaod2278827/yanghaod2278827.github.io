@@ -54,3 +54,15 @@ other = "Updated"
 
 [doubanMissing]
 other = "No Douban data yet — run python3 scripts/fetch_douban.py"
+
+[doubanBio]
+other = "{{ .watched }} films watched on Douban · {{ .wish }} on the watchlist"
+
+[doubanAbout]
+other = "On Douban I have watched {{ .watched }} films and still have {{ .wish }} on the list. Recent one-line notes live on the"
+
+[doubanAboutLink]
+other = "Movies"
+
+[doubanAboutTail]
+other = " page; the numbers are scraped by a script."
