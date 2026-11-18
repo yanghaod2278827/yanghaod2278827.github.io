@@ -4,19 +4,24 @@
   {{ with .Content }}<div class="section-intro">{{ . }}</div>{{ end }}
 </header>
 
+{{/* 博客列表页顶部：标签与计数（数字由 Hugo 从 front matter 算） */}}
+{{ if and (eq .Section "posts") site.Taxonomies.tags }}
+<p class="tag-cloud">
+  <span>{{ i18n "tagsLabel" }}</span>
+  {{ range first 12 site.Taxonomies.tags.ByCount }}
+    <a href="{{ .Page.RelPermalink }}">#{{ .Term }} <span class="tag-count">({{ .Count }})</span></a>
+  {{ end }}
+</p>
+{{ end }}
+
 {{ $pages := .Pages.ByDate.Reverse }}
 {{ if eq .Section "reading" }}{{ $pages = .Pages.ByTitle }}{{ end }}
 
-{{ range $pages }}
-<article class="post-item">
-  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-  <p class="meta">
-    {{ if ne .Section "reading" }}{{ .Date.Format "2006-01-02" }}{{ end }}
-    {{ with .Params.author }} · {{ . }}{{ end }}
-    {{ with .Params.summary }} · {{ . }}{{ end }}
-  </p>
-</article>
-{{ end }}
+<div class="card-list">
+  {{ range $pages }}
+    {{ partial "post-card.html" . }}
+  {{ end }}
+</div>
 
 {{ if not .Pages }}<p class="empty">{{ i18n "emptySection" }}</p>{{ end }}
 {{ end }}

@@ -21,3 +21,12 @@ other = "No project data yet — run python3 scripts/fetch_data.py."
 
 [langSwitchLabel]
 other = "Language"
+
+[allPosts]
+other = "All posts"
+
+[tagsLabel]
+other = "Tags:"
+
+[themeToggle]
+other = "Toggle theme"

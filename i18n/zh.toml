@@ -21,3 +21,12 @@ other = "还没有项目数据，运行 python3 scripts/fetch_data.py 生成。"
 
 [langSwitchLabel]
 other = "语言"
+
+[allPosts]
+other = "全部文章"
+
+[tagsLabel]
+other = "标签："
+
+[themeToggle]
+other = "切换昼夜"

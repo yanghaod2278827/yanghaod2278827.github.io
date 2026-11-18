@@ -1,0 +1,28 @@
+{{/* 双层虚线卡片：有 cover 走左图右文，没有就纯文字 */}}
+{{ $cover := .Params.cover }}
+{{ $section := .Section }}
+{{ $sectionName := .CurrentSection.Title }}
+<a class="stack-card{{ with $cover }} has-cover{{ end }}" href="{{ .RelPermalink }}">
+  <div class="card-inner">
+    {{ with $cover }}<img class="cover" src="{{ . | relURL }}" alt="" loading="lazy">{{ end }}
+    <div>
+      <h3 class="card-title">
+        <span>{{ .Title }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+        </svg>
+      </h3>
+      {{ with (or .Params.summary .Description .Summary) }}
+      <p class="card-excerpt">{{ . | plainify | truncate 160 }}</p>
+      {{ end }}
+      <p class="card-meta">
+        {{ if ne $section "reading" }}{{ .Date.Format "2006-01-02" }}{{ end }}
+        {{ if ne $section "reading" }}<span class="dot">·</span>{{ end }}
+        <span>{{ $sectionName }}</span>
+        {{ with .Params.tags }}
+          {{ range first 3 . }}<span class="dot">·</span><span>#{{ . }}</span>{{ end }}
+        {{ end }}
+      </p>
+    </div>
+  </div>
+</a>

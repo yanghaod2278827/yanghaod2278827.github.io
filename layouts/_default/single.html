@@ -3,8 +3,9 @@
   <header class="post-head">
     <h1>{{ .Title }}</h1>
     <p class="meta">
-      {{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02" }}{{ end }}
-      {{ with .Params.tags }}{{ delimit . " · " }}{{ end }}
+      {{ if not .Date.IsZero }}<span>{{ .Date.Format "2006-01-02" }}</span>{{ end }}
+      {{ with .CurrentSection }}<span>·</span><span>{{ .Title }}</span>{{ end }}
+      {{ with .Params.tags }}<span>·</span><span>{{ delimit . " · " }}</span>{{ end }}
     </p>
   </header>
   <div class="post-body">

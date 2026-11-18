@@ -2,3 +2,6 @@ public/
 resources/_gen/
 .hugo_build.lock
 .DS_Store
+
+# 本地目检截图（scripts/preview_shots.py 的产物）
+报告/

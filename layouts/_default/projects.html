@@ -6,10 +6,21 @@
 
 <div class="grid">
 {{ range hugo.Data.projects }}
-  <a class="card" href="{{ .url }}" target="_blank" rel="noopener">
-    <h3>{{ .name }}</h3>
-    {{ with .description }}<p>{{ . }}</p>{{ end }}
-    <span class="card-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ . }}{{ end }}</span>
+  <a class="project-card" href="{{ .url }}" target="_blank" rel="noopener">
+    <span class="project-cover">
+      {{ with .cover }}<img src="{{ . | relURL }}" alt="" loading="lazy">{{ else }}
+        {{/* 无封面时用仓库名首字母做字母标：claude-worklog-dida → CW */}}
+        {{ $parts := split (replaceRE "[._]" "-" .name) "-" }}
+        {{ $initials := slice }}
+        {{ range first 2 $parts }}{{ with . }}{{ $initials = $initials | append (substr . 0 1 | upper) }}{{ end }}{{ end }}
+        <span class="project-initials">{{ delimit $initials "" }}</span>
+      {{ end }}
+    </span>
+    <span class="project-body">
+      <h3>{{ .name }}</h3>
+      {{ with .description }}<p>{{ . }}</p>{{ end }}
+      <span class="project-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ . }}{{ end }}</span>
+    </span>
   </a>
 {{ end }}
 </div>

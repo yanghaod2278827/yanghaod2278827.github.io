@@ -1,6 +1,10 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span>© {{ now.Year }} {{ site.Title }}</span>
+    <a class="brand" href="{{ "" | relLangURL }}">
+      <span class="brand-mark" aria-hidden="true">{{ substr site.Title 0 1 }}</span>
+      <span>{{ site.Title }}</span>
+    </a>
+    <span>© {{ now.Year }}</span>
     {{ with site.Params.icp }}<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">{{ . }}</a>{{ end }}
   </div>
 </footer>
