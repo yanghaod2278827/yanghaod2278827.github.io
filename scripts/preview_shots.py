@@ -23,6 +23,7 @@ PAGES = [
     ('posts-zh', '/posts/'),
     ('post-zh', '/posts/2026/11/claude-worklog-dida/'),
     ('projects-zh', '/projects/'),
+    ('movies-zh', '/movies/'),
     ('home-en', '/en/'),
 ]
 

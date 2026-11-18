@@ -36,3 +36,21 @@ other = "分类："
 
 [termCount]
 other = "共 {{ .n }} 篇"
+
+[doubanWatched]
+other = "看过"
+
+[doubanWish]
+other = "想看"
+
+[doubanRecentComments]
+other = "近期短评"
+
+[doubanMore]
+other = "全部观影记录"
+
+[doubanUpdated]
+other = "更新于"
+
+[doubanMissing]
+other = "还没有豆瓣数据，先跑 python3 scripts/fetch_douban.py"

@@ -59,9 +59,13 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       url = "/projects/"
       weight = 4
     [[languages.zh.menu.main]]
+      name = "观影"
+      url = "/movies/"
+      weight = 5
+    [[languages.zh.menu.main]]
       name = "关于"
       url = "/about/"
-      weight = 5
+      weight = 6
 
   # ── 英文（/en/ 前缀）────────────────────────────────────────
   [languages.en]
@@ -95,6 +99,10 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       url = "/projects/"
       weight = 4
     [[languages.en.menu.main]]
+      name = "Movies"
+      url = "/movies/"
+      weight = 5
+    [[languages.en.menu.main]]
       name = "About"
       url = "/about/"
-      weight = 5
+      weight = 6

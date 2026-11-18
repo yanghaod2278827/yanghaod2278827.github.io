@@ -679,3 +679,72 @@ html.dark .cover-tag {
 @media (max-width: 720px) {
   .bio-text { font-size: 12.5px; }
 }
+
+/* ── 观影 / 豆瓣 ────────────────────────────────────────── */
+.movie-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 28px 0 36px; }
+
+.movie-list { display: flex; flex-direction: column; }
+
+.movie-item {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.movie-poster {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, hsl(var(--h, 220) 45% 55%) 24%, transparent);
+  background-color: hsl(var(--h, 220) 60% 97%);
+  background-image: var(--grid-img);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: hsl(var(--h, 220) 32% 36%);
+}
+
+html.dark .movie-poster {
+  background-color: hsl(var(--h, 220) 32% 13%);
+  color: hsl(var(--h, 220) 60% 78%);
+}
+
+.movie-title { margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+.movie-title a:hover { border-bottom: 1px dashed var(--fg-3); }
+
+.movie-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0 0 8px;
+  color: var(--fg-3);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rating { display: inline-flex; gap: 3px; }
+.rating .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--fg-3);
+  opacity: .45;
+}
+.rating .dot.on { background: var(--fg); border-color: var(--fg); opacity: .9; }
+
+.movie-comment { margin: 0; color: var(--fg-2); font-size: 14.5px; line-height: 1.75; }
+
+.movie-more { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin: 32px 0 8px; }
+.movie-updated { color: var(--fg-3); font-size: 13px; }
+
+@media (max-width: 720px) {
+  .movie-item { grid-template-columns: 58px minmax(0, 1fr); gap: 14px; }
+  .movie-poster { width: 58px; height: 84px; font-size: 20px; }
+  .movie-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

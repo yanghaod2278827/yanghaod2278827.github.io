@@ -36,3 +36,21 @@ other = "Categories:"
 
 [termCount]
 other = "{{ .n }} posts"
+
+[doubanWatched]
+other = "Watched"
+
+[doubanWish]
+other = "Watchlist"
+
+[doubanRecentComments]
+other = "Recent notes"
+
+[doubanMore]
+other = "Full list on Douban"
+
+[doubanUpdated]
+other = "Updated"
+
+[doubanMissing]
+other = "No Douban data yet — run python3 scripts/fetch_douban.py"

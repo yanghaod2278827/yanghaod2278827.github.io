@@ -5,3 +5,6 @@ resources/_gen/
 
 # 本地目检截图（scripts/preview_shots.py 的产物）
 报告/
+
+# 豆瓣 Cookie（放在用户目录，不进仓库）
+douban_cookie.txt
