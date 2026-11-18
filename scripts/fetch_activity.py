@@ -16,6 +16,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
@@ -36,7 +37,66 @@ SOURCES = [
     {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827'},
     {'key': 'bilibili', 'label': 'B站', 'route': '/bilibili/user/video/357798787'},
     {'key': 'netease', 'label': '网易云', 'route': '/163/music/user/events/131590947'},
+    # 「我喜欢的音乐」没有 RSSHub 路由（interests/like 类都已删除），
+    # 这里直接查网易云公开接口 + 本地状态做 diff：只在有新收藏时才产出条目
+    {'key': 'netease_liked', 'label': '网易云', 'type': 'netease_liked',
+     'playlist': 165468638, 'uid': 131590947},
 ]
+
+STATE_DIR = os.environ.get('ACTIVITY_STATE_DIR', os.path.expanduser('~/.cache/personal-site-activity'))
+LIKED_STATE = os.path.join(STATE_DIR, 'netease_liked.json')
+
+def fetch_liked_songs(playlist_id):
+    """拉「我喜欢的音乐」歌单。未登录时网易云只回前 6 首，登录（MUSIC_U）才给全量。"""
+    ck = os.environ.get('NCM_COOKIE', '').strip()
+    if not ck:
+        for cand in ('~/netease_cookie.txt', '~/.netease_cookie'):
+            fp = os.path.expanduser(cand)
+            if os.path.exists(fp):
+                ck = open(fp, encoding='utf-8').read().strip()
+                break
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                             '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+               'Referer': 'https://music.163.com/'}
+    if ck:
+        headers['Cookie'] = ck
+    url = 'https://music.163.com/api/v6/playlist/detail?id=%s' % playlist_id
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=40) as r:
+        data = json.loads(r.read().decode('utf-8', 'replace'))
+    pl = data.get('playlist') or {}
+    tracks = pl.get('tracks') or []
+    out = []
+    for t in tracks[:60]:
+        ars = t.get('ar') or t.get('artists') or []
+        out.append({
+            'id': str(t.get('id')),
+            'name': t.get('name') or '',
+            'artists': '/'.join(a.get('name', '') for a in ars),
+        })
+    return out, pl.get('name') or '', bool(ck)
+
+
+def liked_diff(songs):
+    """和上次快照对比，返回新收藏的歌曲（首次运行只建快照，不产出条目）。"""
+    os.makedirs(STATE_DIR, exist_ok=True)
+    prev = None
+    if os.path.exists(LIKED_STATE):
+        try:
+            prev = json.load(open(LIKED_STATE, encoding='utf-8'))
+        except Exception:
+            prev = None
+    ids_now = [s['id'] for s in songs]
+    state = {'ids': ids_now, 'updated': time.strftime('%Y-%m-%d')}
+    if prev is None:
+        json.dump(state, open(LIKED_STATE, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+        print('netease_liked snapshot initialised (%d ids), no items emitted' % len(ids_now))
+        return []
+    known = set(prev.get('ids') or [])
+    new = [s for s in songs if s['id'] not in known]
+    json.dump(state, open(LIKED_STATE, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+    return new
+
 
 TAG_RE = re.compile(r'<[^>]+>')
 TZ = timezone(timedelta(hours=8))
@@ -118,7 +178,21 @@ def main():
     merged, failed = [], []
     for s in SOURCES:
         try:
-            got = fetch(s['route'], a.per_source, s['key'])
+            if s.get('type') == 'netease_liked':
+                songs, plname, has_ck = fetch_liked_songs(s['playlist'])
+                new_songs = liked_diff(songs)
+                got = []
+                for x in new_songs:
+                    got.append({
+                        'title': '♥ %s — %s' % (x['name'], x['artists']) if x['artists'] else '♥ ' + x['name'],
+                        'film': '', 'text': '',
+                        'link': 'https://music.163.com/song?id=%s' % x['id'],
+                        'date': time.strftime('%Y-%m-%d %H:%M'),
+                        'image': '',
+                    })
+                print('%-8s %d songs (cookie=%s), %d new' % (s['key'], len(songs), has_ck, len(got)))
+            else:
+                got = fetch(s['route'], a.per_source, s['key'])
             for it in got:
                 it['source'] = s['key']
                 it['source_label'] = s['label']
