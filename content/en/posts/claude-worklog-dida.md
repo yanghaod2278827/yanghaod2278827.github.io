@@ -34,6 +34,16 @@ In the Sunday weekly summary, every statistic — how many tasks were completed,
 
 A run with activity costs about ¥0.15–0.5; a weekly summary about ¥0.23. Idle hours exit after the filesystem scan without calling the model.
 
+## Records can be rewritten by other clients
+
+A counter-intuitive failure appeared after publishing: a "completed" entry turned up in the diary for a to-do I hadn't touched in months.
+
+It wasn't written by the pipeline and it wasn't invented by the model — another sync plugin re-pushed already-completed tasks through the "complete" endpoint, and the server stamped the completion time with "now". A months-old to-do was quietly impersonating today's work.
+
+The prompt now carries a guard: a task whose **creation time predates its completion time by more than 30 days, whose content is empty, and which matches nothing in today's session or file evidence** is treated as anomalous — no field is touched, it stays out of the diary, and the run logs an `ANOMALY` line; a small tool restores the rewritten completion time to the original plan date.
+
+That is exactly what cross-checking evidence is for: a record with neither a matching conversation nor a matching file timestamp does not belong on today's ledger.
+
 ## What it can't do
 
 - It only covers work with **local traces**. Meetings, reading papers, phone calls are invisible unless I write them into the diary
