@@ -274,7 +274,7 @@ html.dark .theme-toggle .moon { display: block; }
 /* ── 数字面板 ───────────────────────────────────────────── */
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
   margin: 56px 0 24px;
 }
@@ -614,6 +614,10 @@ html.dark .cover-tag {
 .empty { color: var(--fg-3); }
 
 /* ── 响应式 ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stack-card.has-cover .card-inner { grid-template-columns: 120px minmax(0, 1fr); gap: 16px; }

@@ -66,3 +66,6 @@ other = "Movies"
 
 [doubanAboutTail]
 other = " page; the numbers are scraped by a script."
+
+[statMovies]
+other = "Movies"

@@ -66,3 +66,6 @@ other = "观影"
 
 [doubanAboutTail]
 other = "页，数据由脚本从豆瓣抓取。"
+
+[statMovies]
+other = "观影"

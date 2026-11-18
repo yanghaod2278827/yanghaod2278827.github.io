@@ -33,6 +33,10 @@
     <span class="num">{{ len $reading }}</span><span class="label">{{ i18n "statReading" }}</span></a>
   <a class="stat" href="{{ "notebook/" | relLangURL }}">
     <span class="num">{{ len $notebook }}</span><span class="label">{{ i18n "statNotes" }}</span></a>
+  {{ with hugo.Data.douban }}
+  <a class="stat" href="{{ "movies/" | relLangURL }}">
+    <span class="num">{{ .stats.watched }}</span><span class="label">{{ i18n "statMovies" }}</span></a>
+  {{ end }}
   {{ with hugo.Data.github }}
   <a class="stat" href="https://github.com/{{ .login }}" target="_blank" rel="noopener">
     <span class="num">{{ .total_stars }}</span><span class="label">{{ i18n "statStars" }}</span></a>
