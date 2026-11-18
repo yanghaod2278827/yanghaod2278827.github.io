@@ -1,6 +1,5 @@
 ---
 title: About
-subtitle: Only the open-source side of things.
 ---
 
 I write small tools and open-source all of them on [GitHub](https://github.com/yanghaod2278827). They tend to start the same way: **something repetitive got annoying enough that I scripted it away**.
