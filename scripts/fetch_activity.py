@@ -36,103 +36,7 @@ SOURCES = [
     {'key': 'douban', 'label': '豆瓣', 'route': '/douban/people/122411510/status'},
     {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827'},
     {'key': 'bilibili', 'label': 'B站', 'route': '/bilibili/user/video/357798787'},
-    {'key': 'netease', 'label': '网易云', 'route': '/163/music/user/events/131590947'},
-    # 「我喜欢的音乐」没有 RSSHub 路由（interests/like 类都已删除），
-    # 这里直接查网易云公开接口 + 本地状态做 diff：只在有新收藏时才产出条目
-    {'key': 'netease_liked', 'label': '网易云', 'type': 'netease_liked',
-     'playlist': 165468638, 'uid': 131590947},
 ]
-
-STATE_DIR = os.environ.get('ACTIVITY_STATE_DIR', os.path.expanduser('~/.cache/personal-site-activity'))
-LIKED_STATE = os.path.join(STATE_DIR, 'netease_liked.json')
-
-def fetch_liked_songs(playlist_id):
-    """拉「我喜欢的音乐」歌单：总数、更新时间、最新若干首。
-
-    未登录时网易云只回前 6 首，但 trackCount / trackUpdateTime 是公开的，
-    所以即使看不到全量，也能靠**总数增减**判断「新增/取消收藏」。
-    """
-    ck = os.environ.get('NCM_COOKIE', '').strip()
-    if not ck:
-        for cand in ('~/netease_cookie.txt', '~/.netease_cookie'):
-            fp = os.path.expanduser(cand)
-            if os.path.exists(fp):
-                ck = open(fp, encoding='utf-8').read().strip()
-                break
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                             '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-               'Referer': 'https://music.163.com/'}
-    if ck:
-        headers['Cookie'] = ck
-    url = 'https://music.163.com/api/v6/playlist/detail?id=%s' % playlist_id
-    req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=40) as r:
-        data = json.loads(r.read().decode('utf-8', 'replace'))
-    pl = data.get('playlist') or {}
-    tracks = []
-    for t in (pl.get('tracks') or [])[:10]:
-        ars = t.get('ar') or t.get('artists') or []
-        tracks.append({
-            'id': str(t.get('id')),
-            'name': t.get('name') or '',
-            'artists': '/'.join(a.get('name', '') for a in ars),
-        })
-    ts = pl.get('trackUpdateTime') or pl.get('updateTime')
-    return {
-        'count': int(pl.get('trackCount') or len(tracks)),
-        'ts': ts,
-        'tracks': tracks,
-        'has_cookie': bool(ck),
-    }
-
-
-def liked_events(snap, playlist_id):
-    """对比上次快照，产出「喜欢/取消喜欢」事件。
-
-    日期取歌单的 trackUpdateTime（真实变动时刻），不是发现时刻。
-    """
-    os.makedirs(STATE_DIR, exist_ok=True)
-    prev = None
-    if os.path.exists(LIKED_STATE):
-        try:
-            prev = json.load(open(LIKED_STATE, encoding='utf-8'))
-        except Exception:
-            prev = None
-
-    pl_url = 'https://music.163.com/playlist?id=%s' % playlist_id
-    if snap.get('ts'):
-        when = datetime.fromtimestamp(snap['ts'] / 1000).strftime('%Y-%m-%d %H:%M')
-    else:
-        when = time.strftime('%Y-%m-%d %H:%M')
-
-    events = []
-    ids_now = [t['id'] for t in snap['tracks']]
-    state = {'count': snap['count'], 'ids': ids_now, 'updated': when}
-
-    if prev and isinstance(prev.get('count'), int):
-        delta = snap['count'] - prev['count']
-        known = set(prev.get('ids') or [])
-        if delta > 0:
-            new = [t for t in snap['tracks'] if t['id'] not in known]
-            for t in new:
-                events.append({
-                    'title': ('♥ 喜欢了《%s》— %s' % (t['name'], t['artists'])) if t['artists']
-                             else ('♥ 喜欢了《%s》' % t['name']),
-                    'film': '', 'text': '',
-                    'link': 'https://music.163.com/song?id=%s' % t['id'],
-                    'date': when, 'image': '',
-                })
-            if delta > len(new):
-                events.append({'title': '♥ 喜欢了 %d 首歌' % delta, 'film': '', 'text': '',
-                               'link': pl_url, 'date': when, 'image': ''})
-        elif delta < 0:
-            events.append({'title': '♡ 取消了 %d 首收藏' % (-delta), 'film': '', 'text': '',
-                           'link': pl_url, 'date': when, 'image': ''})
-    else:
-        print('netease_liked snapshot initialised (%d songs), no items emitted' % snap['count'])
-
-    json.dump(state, open(LIKED_STATE, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    return events
 
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -215,13 +119,7 @@ def main():
     merged, failed = [], []
     for s in SOURCES:
         try:
-            if s.get('type') == 'netease_liked':
-                snap = fetch_liked_songs(s['playlist'])
-                got = liked_events(snap, s['playlist'])
-                print('%-8s %d songs (cookie=%s), %d events'
-                      % (s['key'], snap['count'], snap['has_cookie'], len(got)))
-            else:
-                got = fetch(s['route'], a.per_source, s['key'])
+            got = fetch(s['route'], a.per_source, s['key'])
             for it in got:
                 it['source'] = s['key']
                 it['source_label'] = s['label']
