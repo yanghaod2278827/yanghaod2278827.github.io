@@ -34,6 +34,8 @@ SOURCES = [
     # 从 https://www.douban.com/people/<id>/ 的头像链接 ul122411510-*.jpg 取 122411510
     {'key': 'douban', 'label': '豆瓣', 'route': '/douban/people/122411510/status'},
     {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827'},
+    {'key': 'bilibili', 'label': 'B站', 'route': '/bilibili/user/video/357798787'},
+    {'key': 'netease', 'label': '网易云', 'route': '/163/music/user/events/131590947'},
 ]
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -78,6 +80,18 @@ def fetch(route, per_source, source=''):
 
         # GitHub 的 activity 事件标题是「<user> pushed <repo>」且同一仓库一天会连发多条，
         # 这里统一成仓库名，正文留空，后面再按 (源, 标题, 日期) 合并计数
+        # 正文清洗：去掉裸链接、占位符，以及和标题重复的内容
+        text = re.sub(r'https?://\S+', '', text).strip()
+        if text in ('-', '—', '.', '…'):
+            text = ''
+        norm = lambda x: re.sub(r'[\s\W_]+', '', x).lower()
+        if text and title:
+            nt, nx = norm(title)[:24], norm(text)[:24]
+            if nt and (nx.startswith(nt) or nt.startswith(nx) or nx in norm(title)):
+                text = ''
+        if not title and text:
+            title, text = text[:60], ''
+
         if source == 'github':
             m_repo = re.search(r'github\.com/[^/]+/([^/]+)', it.get('url') or '')
             if m_repo:
