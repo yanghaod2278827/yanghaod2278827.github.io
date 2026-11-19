@@ -70,9 +70,11 @@ def main():
         repos = api('https://api.github.com/users/%s/repos?per_page=100&sort=updated' % USER)
     except urllib.error.HTTPError as e:
         # 失败时保留上一次的 JSON，别让构建因为网络问题挂掉
-        sys.exit('GitHub API %s: %s (keeping previous data)' % (e.code, e.reason))
+        print('GitHub API %s: %s (keeping previous data)' % (e.code, e.reason))
+        return
     except Exception as e:
-        sys.exit('%s: %s (keeping previous data)' % (type(e).__name__, e))
+        print('%s: %s (keeping previous data)' % (type(e).__name__, e))
+        return
 
     # 只统计自己的仓库：排除 fork、归档，以及与用户名同名的 profile 仓库
     own = [r for r in repos
