@@ -26,6 +26,11 @@
         {{ end }}
       </span>
       {{ end }}
+      <a class="icon-btn" href="{{ "search/" | relLangURL }}" aria-label="{{ i18n "navSearch" }}" title="{{ i18n "navSearch" }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"/>
+        </svg>
+      </a>
       <button class="icon-btn theme-toggle" type="button" aria-label="{{ i18n "themeToggle" }}" title="{{ i18n "themeToggle" }}">
         <svg class="sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5m0 15V21m9-9h-1.5M4.5 12H3m15.364-6.364-1.06 1.06M6.696 17.304l-1.06 1.06m12.728 0-1.06-1.06M6.696 6.696l-1.06-1.06M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>

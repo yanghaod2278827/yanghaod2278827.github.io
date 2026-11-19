@@ -21,6 +21,7 @@
         {{ else }}
           <span>{{ .CurrentSection.Title }}</span>
         {{ end }}
+        <span class="dot">·</span><span>{{ partial "reading-time.html" . }}</span>
         {{ $cat := "" }}
         {{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
         {{ with .Params.tags }}

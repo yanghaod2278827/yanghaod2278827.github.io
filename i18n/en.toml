@@ -90,3 +90,39 @@ other = " — {{ .n }} items, pulled by a local RSSHub."
 
 [navActivity]
 other = "Activity"
+
+[readingTime]
+other = "{{ .n }} min read"
+
+[navArchive]
+other = "Archive"
+
+[navTags]
+other = "Tags"
+
+[navSearch]
+other = "Search"
+
+[archiveIntro]
+other = "Everything I have written, newest first."
+
+[allTags]
+other = "All tags →"
+
+[searchPlaceholder]
+other = "Search titles, summaries and text…"
+
+[searchEmpty]
+other = "No posts matched."
+
+[searchHint]
+other = "Start typing to search."
+
+[tocLabel]
+other = "Contents"
+
+[newerPost]
+other = "Newer post"
+
+[olderPost]
+other = "Older post"

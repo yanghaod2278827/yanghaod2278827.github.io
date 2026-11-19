@@ -24,6 +24,7 @@
     {{ $css := . | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   {{ end }}
+  {{ partial "math.html" . }}
   {{ if and (not hugo.IsServer) site.Config.Services.GoogleAnalytics.ID }}
   {{ template "_internal/google_analytics.html" . }}
   {{ end }}

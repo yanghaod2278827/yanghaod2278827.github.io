@@ -1,0 +1,5 @@
+{{/* 预计阅读时间：中文按 350 字/分钟、英文按 200 词/分钟，最少 1 分钟 */}}
+{{ $cpm := 200 }}
+{{ if eq site.Language.Lang "zh" }}{{ $cpm = 350 }}{{ end }}
+{{ $mins := math.Max 1 (math.Round (div (float .WordCount) $cpm)) }}
+{{ i18n "readingTime" (dict "n" (int $mins)) }}

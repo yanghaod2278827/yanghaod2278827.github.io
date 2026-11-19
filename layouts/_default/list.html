@@ -23,6 +23,7 @@
     {{ range first 12 .ByCount }}
       <a href="{{ .Page.RelPermalink }}">#{{ .Term }} <span class="tag-count">({{ .Count }})</span></a>
     {{ end }}
+    <a href="{{ "tags/" | relLangURL }}">{{ i18n "allTags" }}</a>
   </p>
   {{ end }}
 {{ end }}

@@ -13,6 +13,8 @@ I write small tools and open-source all of them on [GitHub](https://github.com/y
 
 Hugo, deployed by GitHub Actions. Every number on the page is fetched by a script from GitHub; article, category and tag counts are computed at build time. Source: [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io).
 
+To dig through older posts use the [Archive](/en/archives/) (by year), [Tags](/en/tags/) or [Search](/en/search/) (client-side, index built at deploy time).
+
 ## Activity
 
 {{< activity-stats >}}

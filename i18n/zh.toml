@@ -90,3 +90,39 @@ other = "，共 {{ .n }} 条，由本机 RSSHub 抓取。"
 
 [navActivity]
 other = "动态"
+
+[readingTime]
+other = "约 {{ .n }} 分钟"
+
+[navArchive]
+other = "归档"
+
+[navTags]
+other = "标签"
+
+[navSearch]
+other = "搜索"
+
+[archiveIntro]
+other = "按年份倒序排列的全部文章。"
+
+[allTags]
+other = "全部标签 →"
+
+[searchPlaceholder]
+other = "搜索标题、摘要和正文…"
+
+[searchEmpty]
+other = "没找到匹配的文章。"
+
+[searchHint]
+other = "输入关键词开始搜索（支持中文子串）。"
+
+[tocLabel]
+other = "目录"
+
+[newerPost]
+other = "较新一篇"
+
+[olderPost]
+other = "较早一篇"
