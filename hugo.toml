@@ -61,6 +61,9 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
         name = "github"
         url = "https://github.com/yanghaod2278827"
       [[languages.zh.params.socialIcons]]
+        name = "bilibili"
+        url = "https://space.bilibili.com/357798787"
+      [[languages.zh.params.socialIcons]]
         name = "email"
         url = "mailto:1936693568@qq.com"
       [[languages.zh.params.socialIcons]]
@@ -121,6 +124,9 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       [[languages.en.params.socialIcons]]
         name = "github"
         url = "https://github.com/yanghaod2278827"
+      [[languages.en.params.socialIcons]]
+        name = "bilibili"
+        url = "https://space.bilibili.com/357798787"
       [[languages.en.params.socialIcons]]
         name = "email"
         url = "mailto:1936693568@qq.com"
