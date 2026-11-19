@@ -121,3 +121,18 @@
 .home-content .pm-stats { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin-bottom: 1.2rem; }
 .home-content .pm-stats a { display: block; }
 .home-content .pm-stats strong { font-size: 1.35rem; }
+
+/* ── 首页收紧留白（只作用于首页，不影响其它页）─────────────── */
+.main { padding-top: 12px; }
+
+/* 主题给 .home-info 设了 min-height: 320px，标题+简介+图标远不到那么高，会留一大块空白 */
+.home-info { margin-top: 8px; margin-bottom: 1.1rem; min-height: 0; }
+.home-info .entry-header h1 { margin: 0 0 .35rem; }
+.home-info .entry-content { margin: 0; }
+.home-info .entry-content p { margin: 0 0 .9rem; }
+
+.home-content { margin: 0; }
+.home-content .pm-stats { margin: 0 0 1.1rem; }
+.home-content .pm-bio { margin: 0 0 1.4rem; }
+
+.home-content + .post-entry { margin-top: 0; }
