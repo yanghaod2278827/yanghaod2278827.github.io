@@ -8,3 +8,6 @@ resources/_gen/
 
 # 豆瓣 Cookie（放在用户目录，不进仓库）
 douban_cookie.txt
+
+# Python 缓存
+__pycache__/
