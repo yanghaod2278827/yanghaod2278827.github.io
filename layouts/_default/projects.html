@@ -1,7 +1,7 @@
 {{ define "main" }}
 <header class="page-header">
   <h1>{{ .Title }}</h1>
-  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+  {{ with (or .Content .Description) }}<div class="page-intro">{{ . }}</div>{{ end }}
 </header>
 
 <div class="pm-projects">
