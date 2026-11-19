@@ -93,6 +93,8 @@ def main():
         'description': r.get('description') or '',
         'language': r.get('language') or '',
         'stars': r.get('stargazers_count', 0),
+        # 本地生成的封面图（scripts/make_covers.py，和文章封面同一套版式）
+        'cover': '/images/covers/projects/%s.png' % r['name'],
     } for r in top[:MAX_PROJECTS]]
     write('projects.json', projects)
     print('%d repos -> %d cards, %d stars total'

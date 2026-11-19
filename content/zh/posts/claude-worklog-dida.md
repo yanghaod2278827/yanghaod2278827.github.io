@@ -4,6 +4,7 @@ slug: claude-worklog-dida
 date: 2026-11-13
 tags: ["Claude Code", "工具", "自动化"]
 categories: ["工具"]
+cover: /images/covers/zh/claude-worklog-dida.png
 summary: 转录里只有和 Claude 的对话，可一天里大部分活是在 Word、Origin、MATLAB 里干的。缺的那一半，得从文件时间戳里找。
 ---
 

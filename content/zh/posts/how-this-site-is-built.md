@@ -4,6 +4,7 @@ slug: how-this-site-is-built
 date: 2026-10-30
 tags: ["Hugo", "建站"]
 categories: ["建站"]
+cover: /images/covers/zh/how-this-site-is-built.png
 summary: Hugo + GitHub Actions，页面上的数字全部由脚本生成。
 ---
 

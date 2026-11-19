@@ -8,13 +8,12 @@
 {{ range hugo.Data.projects }}
   <a class="project-card" href="{{ .url }}" target="_blank" rel="noopener">
     <span class="project-cover">
-      {{ with .cover }}<img src="{{ . | relURL }}" alt="" loading="lazy">{{ else }}
-        {{/* 无封面时用仓库名首字母做字母标：claude-worklog-dida → CW */}}
-        {{ $parts := split (replaceRE "[._]" "-" .name) "-" }}
-        {{ $initials := slice }}
-        {{ range first 2 $parts }}{{ with . }}{{ $initials = $initials | append (substr . 0 1 | upper) }}{{ end }}{{ end }}
-        <span class="project-initials">{{ delimit $initials "" }}</span>
-      {{ end }}
+      {{/* 字母标垫底，有封面图就盖上去；图 404 时 onerror 移除，自动退回字母标 */}}
+      {{ $parts := split (replaceRE "[._]" "-" .name) "-" }}
+      {{ $initials := slice }}
+      {{ range first 2 $parts }}{{ with . }}{{ $initials = $initials | append (substr . 0 1 | upper) }}{{ end }}{{ end }}
+      <span class="project-initials">{{ delimit $initials "" }}</span>
+      {{ with .cover }}<img src="{{ . | relURL }}" alt="" loading="lazy" onerror="this.remove()">{{ end }}
     </span>
     <span class="project-body">
       <h3>{{ .name }}</h3>

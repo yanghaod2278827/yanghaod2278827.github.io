@@ -4,6 +4,7 @@ slug: how-this-site-is-built
 date: 2026-10-30
 tags: ["Hugo", "Blogging"]
 categories: ["Meta"]
+cover: /images/covers/en/how-this-site-is-built.png
 summary: Hugo plus GitHub Actions. Every number on a page is produced by a script.
 ---
 
