@@ -50,6 +50,19 @@ hasCJKLanguage = true
       tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
       # 首页 mono 区块（自我介绍，纯文本，换行原样保留）
       homeInfoParams = { Title = "杨浩", Content = "记录、笔记与一些小工具。" }
+      # 首页社交按钮（PaperMod 的 socialIcons，与 data/profile.json 保持一致）
+      [[languages.zh.params.socialIcons]]
+        name = "github"
+        url = "https://github.com/yanghaod2278827"
+      [[languages.zh.params.socialIcons]]
+        name = "email"
+        url = "mailto:1936693568@qq.com"
+      [[languages.zh.params.socialIcons]]
+        name = "douban"
+        url = "https://www.douban.com/people/d2278827/"
+      [[languages.zh.params.socialIcons]]
+        name = "rss"
+        url = "index.xml"
       bio = """# 开源
 主要在做两件事：
 claude-statusline — Claude Code 跑第三方 API 时的成本状态栏
@@ -99,6 +112,18 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       description = "Notes, experiments, and small tools"
       tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
       homeInfoParams = { Title = "Hao Yang", Content = "Notes, experiments, and small tools." }
+      [[languages.en.params.socialIcons]]
+        name = "github"
+        url = "https://github.com/yanghaod2278827"
+      [[languages.en.params.socialIcons]]
+        name = "email"
+        url = "mailto:1936693568@qq.com"
+      [[languages.en.params.socialIcons]]
+        name = "douban"
+        url = "https://www.douban.com/people/d2278827/"
+      [[languages.en.params.socialIcons]]
+        name = "rss"
+        url = "index.xml"
       bio = """# Open source
 Two things, mostly:
 claude-statusline — a cost-aware status line for Claude Code on third-party APIs

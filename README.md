@@ -35,7 +35,7 @@ python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/im
 | 想改什么 | 改哪里 |
 |:---|:---|
 | 站点标题、菜单、tagline、首页自我介绍 | `hugo.toml` |
-| 首页名片里的链接 | `data/profile.json` |
+| 首页社交按钮（GitHub / Email / 豆瓣 / RSS） | `hugo.toml` 的 `[[languages.*.params.socialIcons]]`（与 `data/profile.json` 保持一致） |
 | 关于页 | `content/zh/about.md`（英文 `content/en/about.md`） |
 | 博客 / 读书 / 技术笔记 | `content/zh/{posts,reading,notebook}/`（英文对应 `content/en/`） |
 | 观影 / 动态页的文案 | `content/{zh,en}/{movies,activity}/_index.md` |
