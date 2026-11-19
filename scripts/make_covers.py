@@ -58,6 +58,31 @@ TEMPLATE = '''<!doctype html><html><head><meta charset="utf-8"><style>
 </body></html>'''
 
 
+# 项目卡是 16:9，方形封面会被 object-fit 裁掉字幕——单独出一版宽图
+TEMPLATE_WIDE = '''<!doctype html><html><head><meta charset="utf-8"><style>
+  html, body {{ margin: 0; width: 1600px; height: 900px; }}
+  body {{
+    position: relative; overflow: hidden; background: #ffffff; color: #0a0a0a;
+    font-family: ui-sans-serif, system-ui, "Microsoft YaHei", "PingFang SC", sans-serif;
+  }}
+  .grid {{
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cpath d='M0 .5H96M.5 0V96' fill='none' stroke='%23d4d4d4' stroke-width='1' stroke-dasharray='4 6'/%3E%3C/svg%3E");
+    -webkit-mask-image: radial-gradient(120% 90% at 0% 0%, #000 6%, transparent 75%);
+    mask-image: radial-gradient(120% 90% at 0% 0%, #000 6%, transparent 75%);
+  }}
+  .wrap {{ position: absolute; inset: 0; padding: 56px 72px; display: flex; align-items: center; }}
+  .glyph {{ font-size: 330px; font-weight: 700; line-height: .85; letter-spacing: -.06em; color: hsl({hue} 42% 36%); }}
+  .tag {{ position: absolute; left: 72px; bottom: 52px; padding: 8px 24px; border: 3px dashed hsl({hue} 32% 74%); border-radius: 999px; font-size: 30px; color: hsl({hue} 28% 42%); }}
+</style></head><body>
+  <div class="grid"></div>
+  <div class="wrap">
+    <div class="glyph">{glyph}</div>
+    <div class="tag">{category}</div>
+  </div>
+</body></html>'''
+
+
 def read_front_matter(path):
     """极简 front matter 解析：只要 title / slug / date / categories。"""
     txt = open(path, encoding='utf-8').read()
@@ -132,16 +157,17 @@ def main():
                     continue
                 parts = re.split(r'[._-]', proj['name'])
                 glyph = ''.join(x[:1] for x in parts[:2]).upper()
-                html = TEMPLATE.format(
+                html = TEMPLATE_WIDE.format(
                     hue=hue_of(proj['name']),
                     glyph=glyph,
                     category=proj.get('language') or 'Repo',
-                    date='',
                 )
+                page.set_viewport_size({'width': 1600, 'height': 900})
                 page.set_content(html, wait_until='load')
                 page.wait_for_timeout(120)
                 page.screenshot(path=out)
                 print('wrote', out)
+                page.set_viewport_size({'width': 1200, 'height': 1200})
         browser.close()
 
 
