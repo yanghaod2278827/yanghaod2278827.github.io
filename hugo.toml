@@ -72,7 +72,7 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       url = "/notebook/"
       weight = 4
     [[languages.zh.menu.main]]
-      name = "开源项目"
+      name = "项目"
       url = "/projects/"
       weight = 3
     [[languages.zh.menu.main]]
@@ -121,7 +121,7 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       url = "/notebook/"
       weight = 4
     [[languages.en.menu.main]]
-      name = "Open Source"
+      name = "Projects"
       url = "/projects/"
       weight = 3
     [[languages.en.menu.main]]

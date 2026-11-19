@@ -11,7 +11,7 @@ title: 关于
 
 ## 这个站
 
-这个站本身也是开源的，在[开源项目](/projects/)页里有它自己的一条：Hugo + PaperMod 构建、GitHub Actions 部署，页面上的数字全部由脚本从 GitHub 拉取，没有手填的。分类与标签计数、文章数也是构建时算的。源码在 [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io)。
+这个站本身也是开源的，在[项目](/projects/)页里有它自己的一条：Hugo + PaperMod 构建、GitHub Actions 部署，页面上的数字全部由脚本从 GitHub 拉取，没有手填的。分类与标签计数、文章数也是构建时算的。源码在 [yanghaod2278827.github.io](https://github.com/yanghaod2278827/yanghaod2278827.github.io)。
 
 翻旧文可以走 [归档](/archives/)（按年份）、[标签](/tags/)或[搜索](/search/)（纯前端，索引在构建时生成）。
 

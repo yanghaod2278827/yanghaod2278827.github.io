@@ -1,6 +1,8 @@
 # personal-site
 
-个人站：博客 + 分主题笔记 + 首页数据面板。Hugo 构建，GitHub Pages 托管。
+个人站：博客 + 读书笔记 + 技术笔记 + 观影 + 动态时间线 + 项目卡片。
+
+**Hugo + [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 主题**构建，GitHub Pages 托管；站内数据（GitHub 仓库信息、豆瓣观影、各平台动态）全部由脚本抓取，没有手填的数字。
 
 站点是双语的：中文在根路径，英文在 `/en/`。
 
@@ -8,51 +10,72 @@
 
 ```bash
 hugo server -D          # http://localhost:1313，改文件秒级刷新
+hugo --gc --minify      # 生产构建到 public/
 ```
 
-## 抓数据
+Hugo 需要 extended 版（主题用到 SCSS 处理）。
 
-首页的 Star 数、项目卡片来自 GitHub API：
+## 数据脚本
+
+`data/` 下的三份 JSON 由脚本生成、**随仓库提交**（没有数据时站点用旧数据照常构建）：
 
 ```bash
-python3 scripts/fetch_data.py           # 生成 data/github.json 和 data/projects.json
+python3 scripts/fetch_data.py      # GitHub 仓库 → data/github.json + data/projects.json
+python3 scripts/fetch_douban.py    # 豆瓣「看过」→ data/douban.json（需要豆瓣 cookie）
+python3 scripts/fetch_activity.py  # 各平台动态 → data/activity.json（需要本机 RSSHub）
+python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/images/covers/
 ```
 
-Actions 里每天自动跑一次，不用手工维护。
+- **豆瓣**：cookie 走环境变量 `DOUBAN_COOKIE` 或 `~/douban_cookie.txt`（不进仓库）
+- **动态**：读本机自建的 RSSHub（`127.0.0.1:1200`），源包括豆瓣广播、GitHub、B站；**本站仓库的 push 被排除**，否则「同步脚本提交数据 → 部署 → 新 push 事件 → 再提交」会自激
+- **抓取失败**只打印警告并保留旧 JSON，不会让构建失败
 
 ## 改内容
 
 | 想改什么 | 改哪里 |
 |:---|:---|
-| 站点标题、菜单、tagline | `hugo.toml` |
+| 站点标题、菜单、tagline、首页自我介绍 | `hugo.toml` |
 | 首页名片里的链接 | `data/profile.json` |
-| 关于页 | `content/about.md`（英文 `content/en/about.md`） |
-| 博客文章 | `content/posts/`（英文 `content/en/posts/`） |
-| 读书笔记 | `content/reading/`（英文 `content/en/reading/`） |
-| 技术笔记 | `content/notebook/`（英文 `content/en/notebook/`） |
-| 界面文案（导航、空状态） | `i18n/zh.toml` + `i18n/en.toml` |
-| 配色 / 排版 | `assets/css/main.css` |
+| 关于页 | `content/zh/about.md`（英文 `content/en/about.md`） |
+| 博客 / 读书 / 技术笔记 | `content/zh/{posts,reading,notebook}/`（英文对应 `content/en/`） |
+| 观影 / 动态页的文案 | `content/{zh,en}/{movies,activity}/_index.md` |
+| 界面文案（导航、按钮、空状态） | `i18n/zh.toml` + `i18n/en.toml`（缺 key 时回落到主题的 `i18n/zh.yaml`） |
+| 自写页面（观影/动态/项目）样式 | `assets/css/custom.css` |
+| 主题配色 | 覆盖 `assets/css/extended/`，**不要改 `themes/PaperMod/`** |
 
-**双语约定**：一篇内容要出现在两种语言里，两边的**相对路径和 `slug` 必须一致**（`content/posts/foo.md` ↔ `content/en/posts/foo.md`），否则语言切换器认不出译文的对应关系，只能跳回对方首页。新增界面文案时两个 `i18n/*.toml` 都要加 key。
+**双语约定**：一篇内容要同时出现在两种语言里，两边的相对路径和 `slug` 必须一致（`content/zh/posts/foo.md` ↔ `content/en/posts/foo.md`），否则语言切换器认不出译文，只能跳回对方首页。
+
+**封面**：文章用 `cover.image`，项目读 `data/projects.json`。文章封面是 1200×1200 方图，需设 `cover.hidden: true`（方形设计图当 PaperMod 横幅会撑满整屏），隐藏后仍会用于 `og:image`；项目卡是 16:9，封面也按 16:9 生成。
 
 ## 结构
 
 ```
-content/             中文内容（根路径）
-content/en/          英文内容（/en/ 前缀）
-content/posts/       博客，按日期倒序
-content/reading/     读书笔记，按书名排序
-content/notebook/    技术笔记
-content/projects/    项目卡片（数据来自 data/projects.json）
-i18n/                界面文案
-layouts/index.html   首页：名片 + 数字面板 + 最近文章
-layouts/_default/    列表页、文章页、项目页
-data/                JSON 数据，模板里用 site.Data.xxx 读
-scripts/             抓数据脚本
+content/zh/           中文内容（根路径）
+content/en/           英文内容（/en/ 前缀）
+  ├─ posts/           博客，按日期倒序
+  ├─ reading/         读书笔记，按书名排序
+  ├─ notebook/        技术笔记
+  ├─ movies/          观影（数据来自 data/douban.json）
+  ├─ activity/        动态时间线（data/activity.json）
+  ├─ projects/        项目卡片（data/projects.json）
+  ├─ archives/        归档（主题布局，年 → 月分组）
+  └─ search/          站内搜索（主题布局，fuse.js）
+data/                 JSON 数据，模板里用 hugo.Data.xxx 读
+layouts/_default/     只放主题没有的三页：movies / activity / projects
+layouts/shortcodes/   正文里插数据：douban-stats / activity-stats
+assets/css/custom.css 上述三页的补充样式
+themes/PaperMod/      主题（vendored，非 submodule；升级＝整目录覆盖）
+scripts/              抓数据、生成封面、截图预览
 ```
+
+## 站内搜索
+
+首页模板额外输出一份 `index.json`（`[outputs] home = [..., "JSON"]`），`/search/` 用它做纯前端过滤，中英文都按子串匹配。
 
 ## 部署
 
-推到 GitHub → Actions 自动构建 → GitHub Pages。
+推到 `main` → Actions 自动构建（`fetch_data.py` → `hugo --minify --gc`）→ GitHub Pages。
 
 首次启用：仓库 Settings → Pages → Source 选 **GitHub Actions**。
+
+数据的新鲜度靠本机计划任务（豆瓣观影 / 动态），它们定时跑脚本、有变化才 commit + push，从而触发一次部署。
