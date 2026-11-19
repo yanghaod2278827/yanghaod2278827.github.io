@@ -1,0 +1,17 @@
+{{/* 首页 mono 自我介绍块：文案在 hugo.toml 的 params.bio，底部挂动态/观影入口 */}}
+{{ with site.Params.bio }}
+<div class="pm-bio">
+  <div class="pm-bio-head"><span></span>about.txt</div>
+  <pre class="pm-bio-text">{{ . }}</pre>
+  {{ with hugo.Data.activity }}
+  <a class="pm-bio-foot" href="{{ "activity/" | relLangURL }}">
+    <span>{{ i18n "activityBio" (dict "n" (len .items)) }}</span><span aria-hidden="true">→</span>
+  </a>
+  {{ end }}
+  {{ with hugo.Data.douban }}
+  <a class="pm-bio-foot" href="{{ "movies/" | relLangURL }}">
+    <span>{{ i18n "doubanBio" (dict "watched" .stats.watched "wish" .stats.wish) }}</span><span aria-hidden="true">→</span>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

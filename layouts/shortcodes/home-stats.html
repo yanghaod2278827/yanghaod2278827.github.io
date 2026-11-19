@@ -1,0 +1,15 @@
+{{/* 首页数字面板：能算的用 Hugo 算，外部数据用 hugo.Data */}}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $notes := where site.RegularPages "Section" "notebook" }}
+{{ $reading := where site.RegularPages "Section" "reading" }}
+<div class="pm-stats">
+  <a href="{{ "posts/" | relLangURL }}"><strong>{{ len $posts }}</strong><span>{{ i18n "statPosts" }}</span></a>
+  <a href="{{ "notebook/" | relLangURL }}"><strong>{{ len $notes }}</strong><span>{{ i18n "statNotes" }}</span></a>
+  {{ with hugo.Data.douban }}
+  <a href="{{ "movies/" | relLangURL }}"><strong>{{ .stats.watched }}</strong><span>{{ i18n "statMovies" }}</span></a>
+  {{ end }}
+  <a href="{{ "reading/" | relLangURL }}"><strong>{{ len $reading }}</strong><span>{{ i18n "statReading" }}</span></a>
+  {{ with hugo.Data.github }}
+  <a href="https://github.com/{{ .login }}" target="_blank" rel="noopener"><strong>{{ .total_stars }}</strong><span>{{ i18n "statStars" }}</span></a>
+  {{ end }}
+</div>
