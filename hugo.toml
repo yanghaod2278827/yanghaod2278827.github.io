@@ -1,3 +1,4 @@
+theme = "PaperMod"
 baseURL = "https://yanghaod2278827.github.io/"
 defaultContentLanguage = "zh"
 # 中文放根路径（/posts/...），英文放 /en/posts/...，已有的中文链接不会失效
@@ -25,6 +26,15 @@ hasCJKLanguage = true
   avatar = ""
   # 备案号（没有就留空）
   icp = ""
+  # ── PaperMod 试用参数 ──
+  env = "production"
+  ShowReadingTime = true
+  ShowToc = true
+  TocOpen = false
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
 
 # ── 中文（默认，根路径）──────────────────────────────────────
 [languages]
@@ -39,6 +49,7 @@ hasCJKLanguage = true
       # 首页名片区的标题和副标题
       tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
       # 首页 mono 区块（自我介绍，纯文本，换行原样保留）
+      homeInfoParams = { Title = "杨浩", Content = "记录、笔记与一些小工具。" }
       bio = """# 开源
 主要在做两件事：
 claude-statusline — Claude Code 跑第三方 API 时的成本状态栏
@@ -87,6 +98,7 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
     [languages.en.params]
       description = "Notes, experiments, and small tools"
       tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
+      homeInfoParams = { Title = "Hao Yang", Content = "Notes, experiments, and small tools." }
       bio = """# Open source
 Two things, mostly:
 claude-statusline — a cost-aware status line for Claude Code on third-party APIs
@@ -140,3 +152,4 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
   [markup.goldmark.extensions.passthrough.delimiters]
     block = [['\[', '\]'], ['$$', '$$']]
     inline = [['\(', '\)'], ['$', '$']]
+

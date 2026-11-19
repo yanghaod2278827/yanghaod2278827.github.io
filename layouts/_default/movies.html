@@ -1,50 +1,32 @@
 {{ define "main" }}
 {{ $d := hugo.Data.douban }}
-<header class="section-head">
+<header class="page-header">
   <h1>{{ .Title }}</h1>
-  {{ with .Params.subtitle }}<p class="section-intro">{{ . }}</p>{{ end }}
+  {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
 </header>
 
 {{ with $d }}
-  {{ with .stats }}
-  <section class="stats movie-stats">
-    <div class="stat"><span class="num">{{ .watched }}</span><span class="label">{{ i18n "doubanWatched" }}</span></div>
-    <div class="stat"><span class="num">{{ .wish }}</span><span class="label">{{ i18n "doubanWish" }}</span></div>
-    <div class="stat"><span class="num">{{ .recent_commented }}</span><span class="label">{{ i18n "doubanRecentComments" }}</span></div>
-  </section>
+<div class="pm-stats">
+  <div><strong>{{ .stats.watched }}</strong><span>{{ i18n "doubanWatched" }}</span></div>
+  <div><strong>{{ .stats.wish }}</strong><span>{{ i18n "doubanWish" }}</span></div>
+  <div><strong>{{ .stats.recent_commented }}</strong><span>{{ i18n "doubanRecentComments" }}</span></div>
+</div>
+
+<ul class="pm-movies">
+  {{ range first 24 .items }}
+  <li>
+    {{ $r := .rating }}
+    <span class="pm-rating" aria-label="{{ $r }}/5">{{ range seq 5 }}{{ if le . $r }}●{{ else }}○{{ end }}{{ end }}</span>
+    <div>
+      <a href="{{ .url }}" target="_blank" rel="noopener">{{ index (split .title " / ") 0 }}</a>
+      <span class="pm-movie-meta">{{ .date }}{{ with index (split .info " / ") 0 }} · {{ . }}{{ end }}</span>
+      {{ with .comment }}<p>{{ . }}</p>{{ end }}
+    </div>
+  </li>
   {{ end }}
-
-  <div class="movie-list">
-    {{ range first 24 .items }}
-    <article class="movie-item">
-      {{ $name := index (split .title " / ") 0 }}
-      {{ $hue := mod (hash.FNV32a (printf "%s" .id)) 360 }}
-      <a class="movie-poster" href="{{ .url }}" target="_blank" rel="noopener" style="--h: {{ $hue }}" aria-hidden="true">
-        <span>{{ substr $name 0 1 }}</span>
-      </a>
-      <div class="movie-body">
-        <h2 class="movie-title">
-          <a href="{{ .url }}" target="_blank" rel="noopener">{{ index (split .title " / ") 0 }}</a>
-        </h2>
-        <p class="movie-meta">
-          {{ $r := .rating }}
-          <span class="rating" aria-label="{{ $r }}/5">
-            {{ range seq 5 }}<span class="dot{{ if le . $r }} on{{ end }}"></span>{{ end }}
-          </span>
-          {{ with .date }}<span>{{ . }}</span>{{ end }}
-          {{ with index (split .info " / ") 0 }}<span>·</span><span>{{ . }}</span>{{ end }}
-        </p>
-        {{ with .comment }}<p class="movie-comment">{{ . }}</p>{{ end }}
-      </div>
-    </article>
-    {{ end }}
-  </div>
-
-  <p class="movie-more">
-    <a class="pill" href="https://movie.douban.com/people/{{ .user }}/collect" target="_blank" rel="noopener">{{ i18n "doubanMore" }}</a>
-    <span class="movie-updated">{{ i18n "doubanUpdated" }} {{ .updated }}</span>
-  </p>
+</ul>
+<p class="pm-more"><a class="pm-btn" href="https://movie.douban.com/people/{{ .user }}/collect" target="_blank" rel="noopener">{{ i18n "doubanMore" }}</a><span>{{ i18n "doubanUpdated" }} {{ .updated }}</span></p>
 {{ else }}
-  <p class="empty">{{ i18n "doubanMissing" }}</p>
+<p>{{ i18n "doubanMissing" }}</p>
 {{ end }}
 {{ end }}
