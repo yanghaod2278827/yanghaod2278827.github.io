@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "sources": [
     "douban",
     "github",
@@ -7,37 +7,48 @@
   ],
   "items": [
     {
-      "title": "yanghaod2278827.github.io",
+      "title": "将军号 The General‎ (1926)",
+      "film": "将军号 The General‎ (1926)",
+      "text": "2026 金鸡：火车调度和剧情完美融合，各种搞笑且不尬的桥段，很经典。很难得的大场面和火车上的动作戏。",
+      "link": "https://www.douban.com/people/122411510/status/10081551634/?_spm_id=MTIyNDExNTEw",
+      "date": "2026-11-19 10:08",
+      "image": "",
+      "source": "douban",
+      "source_label": "豆瓣",
+      "count": 1
+    },
+    {
+      "title": "醉拳‎ (1978)",
+      "film": "醉拳‎ (1978)",
+      "text": "2026 金鸡：上一次看应该是在电视机上，已经很多年没看电视了。一代武侠经典，醉拳全方位展示，武术指导的巅峰，纪念意义远大于剧...",
+      "link": "https://www.douban.com/people/122411510/status/10081286838/?_spm_id=MTIyNDExNTEw",
+      "date": "2026-11-19 08:53",
+      "image": "",
+      "source": "douban",
+      "source_label": "豆瓣",
+      "count": 1
+    },
+    {
+      "title": "回归 Возвращение‎ (2003)",
+      "film": "回归 Возвращение‎ (2003)",
+      "text": "似乎这部电影的故事想说明一个道理：人性本恶，那么还没得到充分教育的孩子就是最能体现这一点的了。故事...",
+      "link": "https://www.douban.com/people/122411510/status/10081274238/?_spm_id=MTIyNDExNTEw",
+      "date": "2026-11-19 08:49",
+      "image": "",
+      "source": "douban",
+      "source_label": "豆瓣",
+      "count": 1
+    },
+    {
+      "title": "claude-worklog-dida",
       "film": "",
       "text": "",
-      "link": "https://github.com/yanghaod2278827/yanghaod2278827.github.io/compare/bd45e2cc3a...fb2ec660e3",
-      "date": "2026-11-18 10:55",
+      "link": "https://github.com/yanghaod2278827/claude-worklog-dida/compare/899c87ee06...88213167d3",
+      "date": "2026-11-18 10:04",
       "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
       "source": "github",
       "source_label": "GitHub",
       "count": 1
-    },
-    {
-      "title": "yanghaod2278827.github.io",
-      "film": "",
-      "text": "",
-      "link": "https://github.com/yanghaod2278827/yanghaod2278827.github.io/compare/e80a166fe9...ca07c005d7",
-      "date": "2026-11-14 08:40",
-      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
-      "source": "github",
-      "source_label": "GitHub",
-      "count": 1
-    },
-    {
-      "title": "yanghaod2278827.github.io",
-      "film": "",
-      "text": "",
-      "link": "https://github.com/yanghaod2278827/yanghaod2278827.github.io/compare/000e6bdee5...05b6e34b9a",
-      "date": "2026-11-13 23:12",
-      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
-      "source": "github",
-      "source_label": "GitHub",
-      "count": 3
     },
     {
       "title": "claude-worklog-dida",
@@ -139,17 +150,6 @@
       "count": 1
     },
     {
-      "title": "何处是我朋友的家 خانه دوست کجاست؟‎‎ (1987)",
-      "film": "何处是我朋友的家 خانه دوست کجاست؟‎‎ (1987)",
-      "text": "",
-      "link": "https://www.douban.com/people/122411510/status/9996247966/?_spm_id=MTIyNDExNTEw",
-      "date": "2026-11-05 21:12",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
-      "count": 1
-    },
-    {
       "title": "billion-context",
       "film": "",
       "text": "",
@@ -158,28 +158,6 @@
       "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
       "source": "github",
       "source_label": "GitHub",
-      "count": 1
-    },
-    {
-      "title": "都灵之马 A torinói ló‎ (2011)",
-      "film": "都灵之马 A torinói ló‎ (2011)",
-      "text": "滚吧，形式大于内容，两个人搁那表演日常生活，导演搁那展示镜头多样性。别以为套个宗教的外壳，就能水个电影...",
-      "link": "https://www.douban.com/people/122411510/status/9991123119/?_spm_id=MTIyNDExNTEw",
-      "date": "2026-11-04 22:46",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
-      "count": 1
-    },
-    {
-      "title": "我的舅舅 Mon oncle‎ (1958)",
-      "film": "我的舅舅 Mon oncle‎ (1958)",
-      "text": "我愿称之为最好的喜剧片之一，从头笑到尾，可以到爆笑的程度，电影院全场都在笑。法国人的幽默感真无敌了。导演对于...",
-      "link": "https://www.douban.com/people/122411510/status/9986179862/?_spm_id=MTIyNDExNTEw",
-      "date": "2026-11-04 01:07",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
       "count": 1
     },
     {
@@ -202,7 +180,7 @@
       "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
       "source": "github",
       "source_label": "GitHub",
-      "count": 3
+      "count": 2
     },
     {
       "title": "SpaceX星舰第五次发射直播全程录像（Starship's Fifth Flight Test - X）",
@@ -331,6 +309,28 @@
       "text": "",
       "link": "https://www.bilibili.com/video/BV13u4y1G7k7",
       "date": "2023-12-08 15:26",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "【骑行日记】小巷街道公路山地车夜晚骑行（骑行数据实时显示）",
+      "film": "",
+      "text": "",
+      "link": "https://www.bilibili.com/video/BV1kH4y167Bz",
+      "date": "2023-10-23 21:44",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "【骑行数据实时显示】厦门城市越野杏林段（山地车第一视角）（insta360X3拍摄）",
+      "film": "",
+      "text": "",
+      "link": "https://www.bilibili.com/video/BV1sh4y1i7ky",
+      "date": "2023-10-23 19:31",
       "image": "",
       "source": "bilibili",
       "source_label": "B站",
