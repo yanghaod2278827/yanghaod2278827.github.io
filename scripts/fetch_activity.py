@@ -39,6 +39,10 @@ SOURCES = [
 ]
 
 
+# 本站仓库的 push 不记进动态：否则「同步脚本提交数据 → 部署 → 产生新 push 事件
+# → 数据又变」会形成自激循环（每轮都产生新条目）。要记录自己的提交就把它移出这里。
+EXCLUDE_REPOS = {'yanghaod2278827.github.io'}
+
 TAG_RE = re.compile(r'<[^>]+>')
 TZ = timezone(timedelta(hours=8))
 
@@ -56,9 +60,21 @@ def localize(iso):
 
 def fetch(route, per_source, source=''):
     url = '%s%s?format=json&limit=%d' % (BASE, route, per_source)
-    req = urllib.request.Request(url, headers={'User-Agent': 'personal-site-activity/1.0'})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        data = json.loads(r.read().decode('utf-8', 'replace'))
+    # RSSHub 的路由偶尔 503（上游站点抽风），重试一次再放弃
+    last = None
+    data = None
+    for attempt in range(2):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'personal-site-activity/1.0'})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                data = json.loads(r.read().decode('utf-8', 'replace'))
+            break
+        except Exception as e:
+            last = e
+            if attempt == 0:
+                time.sleep(6)
+    if data is None:
+        raise last
     items = data.get('items') or []
     out = []
     for it in items:
@@ -96,7 +112,10 @@ def fetch(route, per_source, source=''):
         if source == 'github':
             m_repo = re.search(r'github\.com/[^/]+/([^/]+)', it.get('url') or '')
             if m_repo:
-                title, text = m_repo.group(1), ''
+                repo = m_repo.group(1)
+                if repo in EXCLUDE_REPOS:
+                    continue  # 见 EXCLUDE_REPOS 的说明，避免自激
+                title, text = repo, ''
 
         out.append({
             'title': title[:120],
