@@ -79,3 +79,9 @@ scripts/              抓数据、生成封面、截图预览
 首次启用：仓库 Settings → Pages → Source 选 **GitHub Actions**。
 
 数据的新鲜度靠本机计划任务（豆瓣观影 / 动态），它们定时跑脚本、有变化才 commit + push，从而触发一次部署。
+
+## License
+
+MIT — 见 [LICENSE](LICENSE)。文章与图片的著作权仍归作者所有，代码与模板可自由取用。
+
+> 主题 `themes/PaperMod/` 按它自己的 [MIT 许可](themes/PaperMod/LICENSE) 分发。
