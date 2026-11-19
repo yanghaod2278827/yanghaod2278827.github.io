@@ -4,7 +4,11 @@ slug: why-i-wrote-a-statusline
 date: 2026-10-30
 tags: ["Claude Code", "Tools", "Cost"]
 categories: ["Tools"]
-cover: /images/covers/en/why-i-wrote-a-statusline.png
+cover:
+  image: /images/covers/en/why-i-wrote-a-statusline.png
+  hidden: true   # 方形设计封面不适合当 PaperMod 横幅；保留给 og:image
+  alt: ""
+  caption: ""
 summary: The official cost figure was off from my real bill by 69×. That's not something I can ignore.
 ---
 

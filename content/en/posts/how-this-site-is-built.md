@@ -4,7 +4,11 @@ slug: how-this-site-is-built
 date: 2026-10-30
 tags: ["Hugo", "Blogging"]
 categories: ["Meta"]
-cover: /images/covers/en/how-this-site-is-built.png
+cover:
+  image: /images/covers/en/how-this-site-is-built.png
+  hidden: true   # 方形设计封面不适合当 PaperMod 横幅；保留给 og:image
+  alt: ""
+  caption: ""
 summary: Hugo plus GitHub Actions. Every number on a page is produced by a script.
 ---
 

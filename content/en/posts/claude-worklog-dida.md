@@ -4,7 +4,11 @@ slug: claude-worklog-dida
 date: 2026-11-13
 tags: ["Claude Code", "Tools", "Automation"]
 categories: ["Tools"]
-cover: /images/covers/en/claude-worklog-dida.png
+cover:
+  image: /images/covers/en/claude-worklog-dida.png
+  hidden: true   # 方形设计封面不适合当 PaperMod 横幅；保留给 og:image
+  alt: ""
+  caption: ""
 summary: Transcripts only contain conversations with Claude, but most of a day happens in Word, Origin, or MATLAB. The missing half has to come from file timestamps.
 ---
 

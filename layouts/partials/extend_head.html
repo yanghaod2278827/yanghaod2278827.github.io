@@ -1,0 +1,5 @@
+{{/* 自写页面的补充样式（观影/动态/项目），跟在主题样式之后 */}}
+{{ with resources.Get "css/custom.css" }}
+  {{ $css := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
