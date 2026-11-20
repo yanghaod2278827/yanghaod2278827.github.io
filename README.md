@@ -24,7 +24,7 @@ python -m playwright install chromium     # 首次约 150 MB；CI 不跑这些�
 
 ## 数据脚本
 
-`data/` 下的三份 JSON 由脚本生成、**随仓库提交**（没有数据时站点用旧数据照常构建）：
+`data/` 下的 JSON 全部由脚本生成、**随仓库提交**（没有数据时站点用旧数据照常构建）：github / projects / douban / activity / douyin / publications 六份各有产出脚本，另有 `profile.json` 为早期遗留、当前无模板引用。
 
 ```bash
 python3 scripts/fetch_data.py      # GitHub 仓库 → data/github.json + data/projects.json
@@ -46,7 +46,7 @@ python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/im
 | 想改什么 | 改哪里 |
 |:---|:---|
 | 站点标题、菜单、tagline、首页自我介绍 | `hugo.toml` |
-| 首页社交按钮（GitHub / Email / 豆瓣 / RSS） | `hugo.toml` 的 `[[languages.*.params.socialIcons]]`（与 `data/profile.json` 保持一致） |
+| 首页社交按钮（GitHub / B站 / 抖音 / Email / 豆瓣 / ORCID / ResearchGate / Google Scholar / RSS） | `hugo.toml` 的 `[[languages.*.params.socialIcons]]`（中英各一份） |
 | 关于页 | `content/zh/about.md`（英文 `content/en/about.md`） |
 | 博客 / 技术笔记 | `content/zh/{posts,notebook}/`（英文对应 `content/en/`） |
 | 观影 / 动态页的文案 | `content/{zh,en}/{movies,activity}/_index.md` |
