@@ -14,7 +14,7 @@ summary: 页面上那些数字没有一个是手填的：三条抓取链路、�
 
 这是[建站那篇](/posts/2026/10/how-this-site-is-built/)的续集。上次只说了"数字由脚本生成"，这次把整条链路拆开：数据从哪抓、什么时候抓、抓失败怎么办。
 
-## 三种数据，三种难度
+## 五种数据，五种难度
 
 **GitHub（容易）**：Stars 和项目卡片来自 GitHub API。唯一要处理的是本机 `api.github.com` 被 HTTPS 中间人劫持、Python 的证书库不认——脚本里做了降级：urllib 报证书错误就自动改走 `gh api`。
 
@@ -24,6 +24,10 @@ summary: 页面上那些数字没有一个是手填的：三条抓取链路、�
 - 海报**不能热链**：`img*.doubanio.com` 直连返回 `418 I'm a teapot`，带 referer 也只给约 1KB 的反盗链页面。所以站点上用的是首字母方块，不是海报
 
 **动态（麻烦，要一个服务）**：豆瓣广播、GitHub 活动、B站投稿这些没有 RSS 的地方，靠[自建 RSSHub](https://docs.rsshub.dev)（Docker 一个容器，`127.0.0.1:1200`）转成 JSON 再抓。公共实例直接 403，必须自建。
+
+**抖音（最麻烦，要借页面）**：RSSHub 那条路由要求先跑 Chromium，标准镜像里没有；接口本身还带签名。最后走的路子是「让页面自己发请求」——Playwright 打开主页，拦它自己的 XHR 响应，签名和 cookie 都由页面处理。细节写在这篇[笔记](/notebook/douyin-playwright-intercepted-api/)里。
+
+**论文（反而是最省事的）**：ORCID 提供公开的 JSON 接口，按 ORCID iD 拉一次就有标题、期刊、年份和 DOI，不需要 cookie 也不要浏览器。只取有 DOI 的正式发表条目，投稿中的不会出现。
 
 ## 什么时候抓
 

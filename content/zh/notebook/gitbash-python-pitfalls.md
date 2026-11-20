@@ -3,6 +3,7 @@ title: Git Bash 里跑 Python 的三个坑
 slug: gitbash-python-pitfalls
 date: 2026-10-30
 tags: ["Windows", "Python"]
+summary: Git Bash 下 Python 的三个静默坑：stdout 默认 GBK 打印中文就抛异常、heredoc 吃反斜杠、cv2.imread 遇中文路径只返回 None。
 ---
 
 在 Windows 上用 Git Bash 写 Python，有三个坑反复踩。

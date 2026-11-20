@@ -12,7 +12,7 @@ cover:
 summary: The official cost figure was off from my real bill by 69×. That's not something I can ignore.
 ---
 
-I run Claude Code against a third-party API. One day I glanced at its built-in cost counter and saw something absurd: the same session, reported as `$45.45`, while at the provider's published prices it cost `¥4.66`.
+I run Claude Code against a third-party API. One day I glanced at its built-in cost counter and saw something absurd: the same session, reported as `$45.45` — over three hundred yuan at the exchange rate of the day — while at the provider's published prices it cost `¥4.66`.
 
 A factor of 69.
 
@@ -36,7 +36,9 @@ Any tool that sums tokens line by line will overcount by roughly 2.4×. Several 
 2. **Prices each request at the rate in effect at the time** — a request at 09:59 and one at 10:01 are billed differently
 3. **Moves the balance in the same frame as the spend**, instead of jumping every two minutes
 
-It also handles peak/off-peak pricing, public holidays, and cache hit rate.
+It also handles peak/off-peak pricing and cache hit rate. Public holidays are *not* modelled — they are treated as weekdays, which slightly overstates the bill during long breaks.
+
+The 2.4× issue later grew into [a note of its own](/en/notebook/token-bill-ccusage-double-counts/), with the deduplication rule and how to verify it.
 
 ## One more thing
 

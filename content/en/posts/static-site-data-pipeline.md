@@ -14,7 +14,7 @@ summary: None of the numbers on this site are typed in by hand — three scraper
 
 This continues [the post about how the site is built](/en/posts/2026/10/how-this-site-is-built/). That one said the numbers are produced by scripts; this one takes the pipeline apart: where data comes from, when it is fetched, and what happens when a fetch fails.
 
-## Three kinds of data, three levels of pain
+## Five sources, five levels of pain
 
 **GitHub (easy).** Stars and project cards come from the GitHub API. The only wrinkle is that `api.github.com` is TLS-intercepted on this machine and Python's certificate bundle rejects it, so the script falls back to the `gh` CLI when urllib raises a certificate error.
 
@@ -24,6 +24,10 @@ This continues [the post about how the site is built](/en/posts/2026/10/how-this
 - Posters **cannot be hot-linked**: `img*.doubanio.com` answers `418 I'm a teapot` directly, and with a referer it returns about 1 KB of anti-leech HTML. The site uses monogram tiles instead of posters.
 
 **Activity (the annoying one).** Douban status, GitHub events and Bilibili uploads have no RSS, so a self-hosted [RSSHub](https://docs.rsshub.dev) (one Docker container on `127.0.0.1:1200`) turns them into JSON. The public instance answers 403, so self-hosting is not optional.
+
+**Douyin (the worst one).** The RSSHub route needs Chromium, which the standard image does not ship, and the endpoint is signed anyway. The way through is to let the page issue its own requests: Playwright opens the profile and intercepts the XHR responses, leaving signing and cookies to the page. The details are in [this note](/en/notebook/douyin-playwright-intercepted-api/).
+
+**Publications (the easiest one).** ORCID exposes a public JSON endpoint — one request keyed by ORCID iD returns titles, journals, years and DOIs. No cookie, no browser. Only published entries with a DOI are kept, so anything under review stays out.
 
 ## When it is fetched
 

@@ -3,6 +3,7 @@ title: Fetching the GitHub API from Python, with a fallback to gh
 slug: urllib-gh-api-fallback
 date: 2026-11-13
 tags: ["Python", "Networking", "GitHub"]
+summary: FastGithub terminates TLS in the middle, Python's certifi bundle rejects its certificate, and the safe fix is a fallback to gh api on certificate errors only — not disabling verification.
 ---
 
 The star counts on this site's homepage are fetched by a script that runs before the build. The first version used only `urllib.request`. It worked locally — until I turned on FastGithub (a DNS hijack plus local reverse proxy that speeds up GitHub access).
@@ -33,11 +34,17 @@ A side benefit: `gh` is already authenticated, so local runs don't have to worry
 
 ## Don't let a failed fetch break the build
 
-The data script is part of the build. A network hiccup shouldn't take down the whole deployment. So on failure it **keeps the previous JSON and exits**:
+The data script is part of the build. A network hiccup shouldn't take down the whole deployment. So on failure it **prints a warning, keeps the previous JSON, and exits 0**:
 
 ```python
+except urllib.error.HTTPError as e:
+    print('GitHub API %s: %s (keeping previous data)' % (e.code, e.reason))
+    return                      # exit 0 on purpose; keep CI green
 except Exception as e:
-    sys.exit('%s: %s (keeping previous data)' % (type(e).__name__, e))
+    print('%s: %s (keeping previous data)' % (type(e).__name__, e))
+    return
 ```
+
+⚠️ Do **not** write `sys.exit('...')` here: `sys.exit` with a string argument exits with code **1**, which fails the CI step and defeats the whole point. If you genuinely want a non-zero exit, call `sys.exit(1)` explicitly somewhere it is intended, and make sure the caller can handle it.
 
 The numbers on the page are a day old, but the site still ships. For data that is nice-to-have rather than essential, stale beats broken.

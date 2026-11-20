@@ -3,6 +3,7 @@ title: Python 抓 GitHub API，证书验证失败时退回 gh
 slug: urllib-gh-api-fallback
 date: 2026-11-13
 tags: ["Python", "网络", "GitHub"]
+summary: FastGithub 做 TLS 终止后 Python 的 certifi 不认它的证书；只在证书类错误上降级到 gh api，别关掉验证。
 ---
 
 这个站首页的 star 数是构建前跑脚本抓的。脚本第一版只用 `urllib.request`，本地一直正常，直到开了 FastGithub（DNS 劫持 + 本地反向代理，用来加速 GitHub）。
@@ -33,11 +34,17 @@ def api(url):
 
 ## 抓不到数据时别让构建挂掉
 
-数据脚本是构建流程的一环，网络抖动不该导致整站发布失败。所以抓取失败时**保留上一次的 JSON 直接退出**：
+数据脚本是构建流程的一环，网络抖动不该导致整站发布失败。所以抓取失败时**打印一行警告、保留上一次的 JSON、以 0 退出**：
 
 ```python
+except urllib.error.HTTPError as e:
+    print('GitHub API %s: %s (keeping previous data)' % (e.code, e.reason))
+    return                      # 正常退出，别让 CI 变红
 except Exception as e:
-    sys.exit('%s: %s (keeping previous data)' % (type(e).__name__, e))
+    print('%s: %s (keeping previous data)' % (type(e).__name__, e))
+    return
 ```
+
+⚠️ 这里别写成 `sys.exit('...')`：带字符串参数的 `sys.exit` 退出码是 **1**，CI 会判定这一步失败，恰好毁掉"不让构建挂掉"的初衷。要非零退出，就在别的地方显式 `sys.exit(1)`，并确认调用方接得住。
 
 页面上的数字会旧一天，但站点照常上线。对这类「数字好看但不是关键」的数据，宁可陈旧也不要中断。

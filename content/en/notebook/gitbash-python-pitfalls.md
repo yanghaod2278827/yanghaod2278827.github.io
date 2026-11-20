@@ -3,6 +3,7 @@ title: Three ways Python on Git Bash bites you
 slug: gitbash-python-pitfalls
 date: 2026-10-30
 tags: ["Windows", "Python"]
+summary: Three silent traps when running Python from Git Bash — GBK stdout that throws on Chinese output, a heredoc that eats backslashes, and cv2.imread returning None for Chinese paths.
 ---
 
 Writing Python on Git Bash in Windows, three traps keep coming back.
