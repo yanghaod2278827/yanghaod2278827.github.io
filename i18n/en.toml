@@ -141,3 +141,9 @@ other = "Peer-reviewed papers with DOIs live on the"
 
 [pubAboutTail]
 other = " page, synced from ORCID. Profiles:"
+
+[statPublications]
+other = "Papers"
+
+[statActivity]
+other = "Activity"

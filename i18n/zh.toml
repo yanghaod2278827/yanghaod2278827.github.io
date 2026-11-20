@@ -141,3 +141,9 @@ other = "已发表的论文（含 DOI）整理在"
 
 [pubAboutTail]
 other = "页，由 ORCID 公开记录同步；学术主页："
+
+[statPublications]
+other = "论文"
+
+[statActivity]
+other = "动态"
