@@ -13,7 +13,14 @@ hugo server -D          # http://localhost:1313，改文件秒级刷新
 hugo --gc --minify      # 生产构建到 public/
 ```
 
-Hugo 需要 extended 版（主题用到 SCSS 处理）。
+Hugo 需要 **extended 版**（主题用到 SCSS 处理），版本与 CI 一致（当前 0.169.0）。
+
+抓取脚本除标准库外只依赖 Playwright（抖音、封面生成、截图预览会用到）：
+
+```bash
+pip install -r requirements.txt
+python -m playwright install chromium     # 首次约 150 MB；CI 不跑这些脚本，不需要
+```
 
 ## 数据脚本
 

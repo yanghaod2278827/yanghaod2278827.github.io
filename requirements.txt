@@ -1,0 +1,8 @@
+# 站点抓取/封面脚本的第三方依赖（其余全部是 Python 标准库）。
+# 安装：
+#   pip install -r requirements.txt
+#   python -m playwright install chromium     # 首次需要下载浏览器（约 150 MB）
+#
+# 需要 Playwright 的脚本：fetch_douyin.py（抖音主页）、make_covers.py（生成封面）、preview_shots.py（截图预览）。
+# CI 只跑 fetch_data.py + hugo，不依赖这里。
+playwright>=1.40

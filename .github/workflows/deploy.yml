@@ -34,7 +34,9 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "latest"
+          # 锁版本：本地是 0.169.0，CI 跟 latest 会让上游发版变成"本地零 WARN、CI 直接崩"。
+          # 升级流程：本地装新版 → 全站构建 + preview_shots 目检 → 再改这里。
+          hugo-version: "0.169.0"
           extended: true
 
       - name: Fetch data
