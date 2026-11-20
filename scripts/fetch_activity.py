@@ -170,7 +170,6 @@ def main():
         try:
             if s.get('type') == 'douyin_local':
                 got = load_douyin(s.get('limit', a.per_source))
-                print('%-8s %d items' % (s['key'], len(got)))
             else:
                 got = fetch(s['route'], s.get('limit', a.per_source), s['key'])
             for it in got:
@@ -185,6 +184,23 @@ def main():
     if failed and not merged:
         print('all sources failed; keep old JSON')
         raise SystemExit(1)
+
+    # 单个源临时失败（上游 503、网络抖动）时，沿用该源上一份 JSON 的条目。
+    # 否则一次抖动就会把整块时间线从站点上抹掉：2026-11-20 实测 18:57 三源同时
+    # 503，脚本照常写出只剩抖音的 8 条并提交了 -300 行。
+    failed_keys = {f.split(':')[0] for f in failed}
+    if failed_keys:
+        try:
+            with open(a.out, encoding='utf-8') as f:
+                old = json.load(f)
+            carried = [it for it in (old.get('items') or [])
+                       if it.get('source') in failed_keys]
+        except Exception:
+            carried = []
+        if carried:
+            print('carry over %d item(s) from %s'
+                  % (len(carried), ','.join(sorted(failed_keys))))
+            merged.extend(carried)
 
     def merge_same_day(items):
         """同一源、同一标题、同一天的多条合并成一条，记 count。"""
@@ -208,9 +224,12 @@ def main():
     merged.sort(key=key, reverse=True)
     merged = merged[:a.keep]
 
+    # sources 按实际条目算，而不是「没失败就算」——失败源的旧条目被沿用后
+    # 页面上确实有它，列不出来会和页面矛盾
+    present = {it.get('source') for it in merged}
     data = {
         'updated': __import__('time').strftime('%Y-%m-%d'),
-        'sources': [s['key'] for s in SOURCES if s['key'] not in [f.split(':')[0] for f in failed]],
+        'sources': [s['key'] for s in SOURCES if s['key'] in present],
         'items': merged,
     }
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
