@@ -45,7 +45,6 @@ Jekyll 我没选，原因是构建慢、本地预览要等 Ruby 环境。Hugo �
 content/zh/     中文（根路径）
 content/en/     英文（/en/ 前缀）
   ├── posts/      博客
-  ├── reading/    读书笔记（按书名排序）
   ├── notebook/   技术笔记
   ├── movies/     观影
   ├── activity/   动态时间线

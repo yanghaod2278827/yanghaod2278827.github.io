@@ -98,10 +98,6 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       url = "/activity/"
       weight = 2
     [[languages.zh.menu.main]]
-      name = "读书"
-      url = "/reading/"
-      weight = 6
-    [[languages.zh.menu.main]]
       name = "笔记"
       url = "/notebook/"
       weight = 4
@@ -116,15 +112,15 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
     [[languages.zh.menu.main]]
       name = "论文"
       url = "/publications/"
-      weight = 7
+      weight = 6
     [[languages.zh.menu.main]]
       name = "归档"
       url = "/archives/"
-      weight = 8
+      weight = 7
     [[languages.zh.menu.main]]
       name = "关于"
       url = "/about/"
-      weight = 9
+      weight = 8
 
   # ── 英文（/en/ 前缀）────────────────────────────────────────
   [languages.en]
@@ -181,10 +177,6 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       url = "/activity/"
       weight = 2
     [[languages.en.menu.main]]
-      name = "Reading"
-      url = "/reading/"
-      weight = 6
-    [[languages.en.menu.main]]
       name = "Notes"
       url = "/notebook/"
       weight = 4
@@ -199,15 +191,15 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
     [[languages.en.menu.main]]
       name = "Publications"
       url = "/publications/"
-      weight = 7
+      weight = 6
     [[languages.en.menu.main]]
       name = "Archive"
       url = "/archives/"
-      weight = 8
+      weight = 7
     [[languages.en.menu.main]]
       name = "About"
       url = "/about/"
-      weight = 9
+      weight = 8
 
 # ── 站内搜索索引（每语言一份 /index.json）────────────────────
 [outputs]

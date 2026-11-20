@@ -1,6 +1,6 @@
 # personal-site
 
-个人站：博客 + 读书笔记 + 技术笔记 + 观影 + 动态时间线 + 项目卡片。
+个人站：博客 + 技术笔记 + 观影 + 动态时间线 + 论文 + 项目卡片。
 
 **Hugo + [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 主题**构建，GitHub Pages 托管；站内数据（GitHub 仓库信息、豆瓣观影、各平台动态）全部由脚本抓取，没有手填的数字。
 
@@ -41,7 +41,7 @@ python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/im
 | 站点标题、菜单、tagline、首页自我介绍 | `hugo.toml` |
 | 首页社交按钮（GitHub / Email / 豆瓣 / RSS） | `hugo.toml` 的 `[[languages.*.params.socialIcons]]`（与 `data/profile.json` 保持一致） |
 | 关于页 | `content/zh/about.md`（英文 `content/en/about.md`） |
-| 博客 / 读书 / 技术笔记 | `content/zh/{posts,reading,notebook}/`（英文对应 `content/en/`） |
+| 博客 / 技术笔记 | `content/zh/{posts,notebook}/`（英文对应 `content/en/`） |
 | 观影 / 动态页的文案 | `content/{zh,en}/{movies,activity}/_index.md` |
 | 界面文案（导航、按钮、空状态） | `i18n/zh.toml` + `i18n/en.toml`（缺 key 时回落到主题的 `i18n/zh.yaml`） |
 | 自写页面（观影/动态/项目）样式 | `assets/css/custom.css` |
@@ -57,7 +57,6 @@ python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/im
 content/zh/           中文内容（根路径）
 content/en/           英文内容（/en/ 前缀）
   ├─ posts/           博客，按日期倒序
-  ├─ reading/         读书笔记，按书名排序
   ├─ notebook/        技术笔记
   ├─ movies/          观影（数据来自 data/douban.json）
   ├─ activity/        动态时间线（data/activity.json）

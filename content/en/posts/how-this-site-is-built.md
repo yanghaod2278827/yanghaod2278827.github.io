@@ -45,7 +45,6 @@ The scraped JSON is committed, so the build reads it directly — **a failed fet
 content/zh/     Chinese (site root)
 content/en/     English (/en/ prefix)
   ├── posts/      blog
-  ├── reading/    reading notes (sorted by title)
   ├── notebook/   technical notes
   ├── movies/     films
   ├── activity/   activity timeline
