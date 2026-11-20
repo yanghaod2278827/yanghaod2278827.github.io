@@ -22,7 +22,7 @@ I avoided anything that needs a runtime: Hugo is a single binary, a one-characte
 
 ## The theme: PaperMod
 
-Until November 2026 the site used hand-written templates (dashed grid background, stacked dashed cards). It looked good but every feature had to be built by hand. Switching to [PaperMod](https://github.com/adityatelange/hugo-PaperMod) bought search, archives grouped by year and month, a table of contents, related posts and dark mode.
+Until November 2026 the site used hand-written templates (dashed grid background, stacked dashed cards). It looked good but every feature had to be built by hand. Switching to [PaperMod](https://github.com/adityatelange/hugo-PaperMod) bought search, archives grouped by year and month, a table of contents, related posts and dark mode. I first came across the theme on [Lilian Weng's site](https://lilianweng.github.io/) — also Hugo + PaperMod — and after reading it for a while, "a personal site should look like this" stuck.
 
 The theme is **vendored into the repo** (`themes/PaperMod/`, not a submodule): CI needs no extra configuration and upgrading means replacing one directory. The trade-off is a more document-like card style, so four pages stay custom — films, activity, publications and projects — with a single `custom.css`.
 

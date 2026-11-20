@@ -22,7 +22,7 @@ summary: Hugo + PaperMod，数据全部由脚本抓，站点本身就是仓库�
 
 ## 主题：PaperMod
 
-2026-11 之前我用的是自己写的模板（方格虚线背景、双层虚线卡片），好看但功能要自己补。后来换成 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)，换来现成的搜索、归档（年 → 月分组）、文章目录、相关文章和暗色模式。
+2026-11 之前我用的是自己写的模板（方格虚线背景、双层虚线卡片），好看但功能要自己补。后来换成 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)，换来现成的搜索、归档（年 → 月分组）、文章目录、相关文章和暗色模式。第一次知道这个主题，是在[翁荔（Lilian Weng）的个人站](https://lilianweng.github.io/)上——她的站也是 Hugo + PaperMod，读得多了就觉得"个人站该是这个样子"。
 
 主题是**直接放进仓库**的（`themes/PaperMod/`，不是 submodule）——CI 不用额外配置，升级就是重新下载覆盖一个目录。代价是主题自带的卡片风格更"文档站"，所以另写了四个页面（观影 / 动态 / 论文 / 项目）和一份 `custom.css`。
 
