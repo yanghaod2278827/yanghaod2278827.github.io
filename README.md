@@ -90,6 +90,15 @@ scripts/              抓数据、生成封面、截图预览
 
 数据的新鲜度靠本机计划任务（豆瓣观影 / 动态），它们定时跑脚本、有变化才 commit + push，从而触发一次部署。
 
+## 参考
+
+这个站的版式与结构不是原创设计，参考的是两个个人站：
+
+- **[Lilian Weng（翁荔）](https://lilianweng.github.io/)** —— 通过她的个人站第一次知道 PaperMod；本站的 Hugo + PaperMod 组合与整体版式基调沿用这个选择（她的站实测也是 Hugo 0.163 + PaperMod）。
+- **[DIYgod](https://diygod.cc/)** —— 结构上的参考（RSSHub / xLog 的作者）：内容按主题拆成自定义集合、页面上的数字交给脚本生成、主题源码直接放进仓库而不是装成依赖。
+
+主题本身是 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)，按 MIT 分发，版权归原作者。
+
 ## License
 
 MIT — 见 [LICENSE](LICENSE)。文章与图片的著作权仍归作者所有，代码与模板可自由取用。
