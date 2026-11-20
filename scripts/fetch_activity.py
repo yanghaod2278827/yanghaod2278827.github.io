@@ -65,6 +65,36 @@ def localize(iso):
 
 
 DOUYIN_JSON = os.path.join(ROOT, 'data', 'douyin.json')
+DOUBAN_JSON = os.path.join(ROOT, 'data', 'douban.json')
+DOUBAN_LOCAL_DAYS = 14
+
+
+def load_douban_watched(days=DOUBAN_LOCAL_DAYS, limit=15):
+    """豆瓣「看过」不一定有广播：标记时没勾「同步到广播」的片子只出现在
+    data/douban.json 里（2026-11-20 的《两京十五日》就是这种，观影页更新了、
+    动态页没动）。这里把近 days 天的看过补成活动条目，由调用方按片名去重：
+    广播条目的标题是「片名 原名 (年份)」，douban.json 的第一段就是片名。
+    """
+    if not os.path.exists(DOUBAN_JSON):
+        return []
+    cutoff = (datetime.now(TZ) - timedelta(days=days)).strftime('%Y-%m-%d')
+    out = []
+    for it in json.load(open(DOUBAN_JSON, encoding='utf-8')).get('items') or []:
+        day = (it.get('date') or '')[:10]
+        title = (it.get('title') or '').split(' / ')[0].strip()
+        if not day or day < cutoff or not title:
+            continue
+        out.append({
+            'title': title[:120],
+            'film': '',
+            'text': (it.get('comment') or '')[:600],
+            'link': it.get('url') or '',
+            'date': day,
+            'image': '',
+        })
+        if len(out) >= limit:
+            break
+    return out
 
 
 def load_douyin(limit):
@@ -184,6 +214,25 @@ def main():
     if failed and not merged:
         print('all sources failed; keep old JSON')
         raise SystemExit(1)
+
+    # 「看过」兜底：广播接口只有勾了同步的那些，没勾的从 douban.json 补。
+    try:
+        watched = load_douban_watched()
+    except Exception as e:
+        print('douban   local FAILED: %s' % e)
+        watched = []
+    if watched:
+        have = [it.get('title') or '' for it in merged if it.get('source') == 'douban']
+        added = 0
+        for it in watched:
+            if any(it['title'] in t for t in have):
+                continue  # 广播版正文更全，优先保留
+            it['source'] = 'douban'
+            it['source_label'] = '豆瓣'
+            merged.append(it)
+            have.append(it['title'])
+            added += 1
+        print('douban   %d watched without a broadcast' % added)
 
     # 单个源临时失败（上游 503、网络抖动）时，沿用该源上一份 JSON 的条目。
     # 否则一次抖动就会把整块时间线从站点上抹掉：2026-11-20 实测 18:57 三源同时
