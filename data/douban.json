@@ -1,12 +1,22 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "user": "d2278827",
   "stats": {
-    "watched": 1857,
+    "watched": 1858,
     "wish": 1218,
     "recent_commented": 40
   },
   "items": [
+    {
+      "id": "35235320",
+      "title": "两京十五日 / River of No Return",
+      "info": "2026-11-20(中国大陆) / 成毅 / 林更新 / 姜珮瑶 / 吴幸键 / 王和 / 陈数 / 张志坚 / 张国强 / 马少骅 / 黄品沅 / 中国大陆 / 张黎 / 安巍 / 45分钟 / 剧情 / 古装 / 徐辉 Hui Xu / 周萌 Meng Zhou / 王莹菲 Yingfei Wang / 汉语普通话",
+      "rating": 4,
+      "date": "2026-11-20",
+      "comment": "",
+      "poster": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2937593221.jpg",
+      "url": "https://movie.douban.com/subject/35235320/"
+    },
     {
       "id": "1294531",
       "title": "牺牲 / Offret / Le sacrifice / The Sacrifice",
@@ -446,16 +456,6 @@
       "comment": "",
       "poster": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2932320661.jpg",
       "url": "https://movie.douban.com/subject/36883114/"
-    },
-    {
-      "id": "37317133",
-      "title": "今晚正好 / 纯爱地 / Crossing A Dawn",
-      "info": "2026-04-19(北京国际电影节) / 2026-05-22(中国大陆) / 马思纯 / 陈昊森 / 张艺凡 / 宋洋 / 温茉言 / 吕星辰 / 中国大陆 / 赵八斗 / 102分钟 / 剧情 / 喜剧 / 爱情 / 赵八斗 Badou Zhao / 汉语普通话",
-      "rating": 4,
-      "date": "2026-05-21",
-      "comment": "",
-      "poster": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2931924321.jpg",
-      "url": "https://movie.douban.com/subject/37317133/"
     }
   ]
 }
