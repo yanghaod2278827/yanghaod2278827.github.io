@@ -63,12 +63,11 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       [[languages.zh.params.socialIcons]]
         name = "bilibili"
         url = "https://space.bilibili.com/357798787"
-      # 抖音：只有抖音号 d2278827，没有公开主页 URL（抖音主页要 sec_uid），
-      # 先用「按用户搜索」的地址兜底；拿到主页链接后把 url 换掉即可
+      # 抖音：抖音号 d2278827；主页 URL 由分享短链 v.douyin.com/B7vVqFKo4l8 解析出的 sec_uid 拼成
       [[languages.zh.params.socialIcons]]
         name = "tiktok"
         title = "抖音"
-        url = "https://www.douyin.com/search/d2278827?type=user"
+        url = "https://www.douyin.com/user/MS4wLjABAAAA23-trcRF6O0CgMplB8ae7Ryt2utjgKi1xcubyDvLir0"
       [[languages.zh.params.socialIcons]]
         name = "email"
         url = "mailto:1936693568@qq.com"
@@ -137,8 +136,8 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       # 先用「按用户搜索」的地址兜底；拿到主页链接后把 url 换掉即可
       [[languages.en.params.socialIcons]]
         name = "tiktok"
-        title = "抖音"
-        url = "https://www.douyin.com/search/d2278827?type=user"
+        title = "Douyin"
+        url = "https://www.douyin.com/user/MS4wLjABAAAA23-trcRF6O0CgMplB8ae7Ryt2utjgKi1xcubyDvLir0"
       [[languages.en.params.socialIcons]]
         name = "email"
         url = "mailto:1936693568@qq.com"
