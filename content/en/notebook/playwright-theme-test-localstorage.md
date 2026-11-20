@@ -3,6 +3,7 @@ title: Testing theme persistence? Don't clear localStorage in an init script
 slug: playwright-theme-test-localstorage
 date: 2026-11-20
 tags: ["Playwright", "Testing", "Frontend"]
+summary: add_init_script runs before every navigation, which turns a "theme persists after reload" assertion into a false negative.
 ---
 
 The site has a light/dark toggle backed by localStorage. A Playwright test meant to verify "switch to dark → reload → still dark" reported that the theme was lost on reload — while doing it by hand worked fine.

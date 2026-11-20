@@ -3,6 +3,7 @@ title: Scraping Douyin by letting the page sign its own requests
 slug: douyin-playwright-intercepted-api
 date: 2026-11-20
 tags: ["Douyin", "Playwright", "Scraping"]
+summary: Douyin signs its API and the RSSHub route needs Chromium; instead let the page issue the request and intercept the response.
 ---
 
 I wanted my Douyin videos in the site's activity timeline. RSSHub does have `/douyin/user/:sec_uid`, but it is unusable here:

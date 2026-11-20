@@ -3,6 +3,7 @@ title: 抖音抓取：让页面自己算签名，你只读它的响应
 slug: douyin-playwright-intercepted-api
 date: 2026-11-20
 tags: ["抖音", "Playwright", "抓取"]
+summary: 抖音接口带签名、RSSHub 路由又要 Chromium——换个思路：让页面自己发请求，我们只读响应。
 ---
 
 想在「动态」里展示自己的抖音作品。RSSHub 有 `/douyin/user/:sec_uid` 路由，但用不了：

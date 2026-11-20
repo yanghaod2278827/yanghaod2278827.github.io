@@ -3,6 +3,7 @@ title: TOML 的数组表会偷偷吞掉后面的键
 slug: toml-array-table-swallows-keys
 date: 2026-11-20
 tags: ["Hugo", "TOML", "配置"]
+summary: TOML 的 [[数组表]] 一出现，后面的裸键就归它了——配置静默变空、页面少一块，构建却全绿。
 ---
 
 给 Hugo 配首页社交图标，加完 `[[languages.zh.params.socialIcons]]` 之后，首页的「关于」块整个消失了——**构建零报错、零警告**，页面只是少了一块。

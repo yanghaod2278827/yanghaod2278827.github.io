@@ -3,6 +3,7 @@ title: Without hasCJKLanguage, every Chinese post reads as 1 minute
 slug: hugo-cjk-wordcount
 date: 2026-11-20
 tags: ["Hugo", "Chinese", "Site"]
+summary: Hugo counts words by whitespace, so 1700 Chinese characters count as 95 words and reading time always reads one minute.
 ---
 
 PaperMod's "N min read" showed "1 min" for three posts in a row — including a 1700-character article.

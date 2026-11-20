@@ -3,6 +3,7 @@ title: 不设 hasCJKLanguage，中文阅读时间永远是 1 分钟
 slug: hugo-cjk-wordcount
 date: 2026-11-20
 tags: ["Hugo", "中文", "站点"]
+summary: Hugo 默认按空格分词，1700 个中文字符只算 95 个词，于是阅读时间永远显示 1 分钟。一个配置项解决。
 ---
 
 用 PaperMod 显示「约 N 分钟」，结果三篇文章全是「约 1 分钟」——包括一篇 1700 字的长文。

@@ -4,6 +4,9 @@ defaultContentLanguage = "zh"
 # 中文放根路径（/posts/...），英文放 /en/posts/...，已有的中文链接不会失效
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
+# 首页列表包含哪些 section。不写时 Hugo 会取「页面最多的那个」，
+# 笔记一多就会把博客整个挤出首页（实测：加完 5 篇笔记后首页只剩笔记）
+mainSections = ["posts", "notebook"]
 # 中文按「字」计入 WordCount/字数统计，否则整段中文只算 1 个词（阅读时间会算成 1 分钟）
 hasCJKLanguage = true
 

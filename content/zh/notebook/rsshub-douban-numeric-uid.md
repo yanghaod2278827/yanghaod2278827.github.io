@@ -3,6 +3,7 @@ title: RSSHub 的豆瓣广播路由只认数字 uid
 slug: rsshub-douban-numeric-uid
 date: 2026-11-20
 tags: ["RSSHub", "豆瓣", "抓取"]
+summary: 字母型豆瓣 id 在该路由上会 404，表现为 503；数字 id 藏在头像链接里。
 ---
 
 自建 RSSHub 想订阅自己的豆瓣广播：

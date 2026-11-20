@@ -3,6 +3,7 @@ title: 用 Playwright 测主题切换，别在 init script 里清 localStorage
 slug: playwright-theme-test-localstorage
 date: 2026-11-20
 tags: ["Playwright", "测试", "前端"]
+summary: add_init_script 每次导航都会执行，会把「刷新后主题仍然保持」的断言误判成失效。
 ---
 
 站点加了昼夜切换（主题存在 localStorage），想用 Playwright 验证「切到暗色 → 刷新 → 仍然是暗色」。第一版测试结果报「刷新后主题丢失」，但手动在浏览器里操作明明好好的。

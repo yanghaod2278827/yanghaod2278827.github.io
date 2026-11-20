@@ -3,6 +3,7 @@ title: TOML array tables quietly swallow the keys after them
 slug: toml-array-table-swallows-keys
 date: 2026-11-20
 tags: ["Hugo", "TOML", "Config"]
+summary: A TOML array table captures every bare key after it, so a config value silently becomes nil and a page section vanishes while the build stays green.
 ---
 
 I added `[[languages.zh.params.socialIcons]]` to a Hugo config and the homepage's about block disappeared — **no build error, no warning**, one section simply vanished.

@@ -3,6 +3,7 @@ title: RSSHub's Douban status route only accepts a numeric uid
 slug: rsshub-douban-numeric-uid
 date: 2026-11-20
 tags: ["RSSHub", "Douban", "Scraping"]
+summary: The route only accepts numeric ids; a vanity id 404s upstream and surfaces as 503. The numeric id hides in the avatar URL.
 ---
 
 Subscribing to my own Douban status through a self-hosted RSSHub:
