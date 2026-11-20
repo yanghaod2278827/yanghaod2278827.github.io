@@ -30,7 +30,17 @@
   border-bottom: 1px solid var(--border);
 }
 .pm-movies li:last-child { border-bottom: 0; }
-.pm-rating { color: var(--secondary); font-size: .7rem; letter-spacing: 1px; padding-top: .2rem; }
+.pm-rating { color: var(--secondary); font-size: .7rem; letter-spacing: 1px; margin-right: .45rem; vertical-align: 2px; }
+/* 海报本地化（豆瓣图床禁热链，文件由 fetch_douban.py 下载到 static/images/posters/） */
+.pm-poster {
+  width: 64px; height: 96px; border-radius: 3px; display: block;
+  object-fit: cover; background: var(--entry);
+}
+.pm-poster-empty {
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); color: var(--secondary);
+  font-size: 1.5rem; font-weight: 600;
+}
 .pm-movies a { font-weight: 600; }
 .pm-movie-meta { display: block; color: var(--secondary); font-size: .8rem; margin: .15rem 0 .3rem; }
 .pm-movies p { margin: .2rem 0 0; color: var(--content); font-size: .92rem; }
@@ -73,6 +83,7 @@
 @media (max-width: 640px) {
   .pm-stats { grid-template-columns: 1fr; }
   .pm-movies li { grid-template-columns: 48px minmax(0, 1fr); }
+  .pm-poster { width: 48px; height: 72px; }
 }
 
 /* 首页数字面板改成可点的卡片 */

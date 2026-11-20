@@ -45,13 +45,13 @@ hasCJKLanguage = true
     label = "中文"
     locale = "zh-cn"
     contentDir = "content/zh"
-    title = "杨浩"
+    title = "Yang Hao"
     weight = 1
     [languages.zh.params]
       description = "记录、笔记与一些小工具"
       # 首页名片区的标题和副标题
       tagline = "I build small tools. Mostly Python, mostly things I got tired of doing by hand."
-      homeInfoParams = { Title = "杨浩", Content = "记录、笔记与一些小工具。" }
+      homeInfoParams = { Title = "Yang Hao", Content = "记录、笔记与一些小工具。" }
       # 首页 about.txt 块（纯文本，换行原样保留）
       bio = """# 开源
 主要在做两件事：

@@ -14,11 +14,18 @@
 
 <ul class="pm-movies">
   {{ range first 24 .items }}
+  {{ $title := index (split .title " / ") 0 }}
+  {{ $poster := printf "static/images/posters/%s.jpg" .id }}
   <li>
     {{ $r := .rating }}
-    <span class="pm-rating" aria-label="{{ $r }}/5">{{ range seq 5 }}{{ if le . $r }}●{{ else }}○{{ end }}{{ end }}</span>
+    {{ if os.FileExists $poster }}
+    <img class="pm-poster" src="{{ printf "/images/posters/%s.jpg" .id }}" alt="{{ $title }}" width="64" height="96" loading="lazy">
+    {{ else }}
+    <span class="pm-poster pm-poster-empty" aria-hidden="true">{{ substr $title 0 1 }}</span>
+    {{ end }}
     <div>
-      <a href="{{ .url }}" target="_blank" rel="noopener">{{ index (split .title " / ") 0 }}</a>
+      <span class="pm-rating" aria-label="{{ $r }}/5">{{ range seq 5 }}{{ if le . $r }}●{{ else }}○{{ end }}{{ end }}</span>
+      <a href="{{ .url }}" target="_blank" rel="noopener">{{ $title }}</a>
       <span class="pm-movie-meta">{{ .date }}{{ with index (split .info " / ") 0 }} · {{ . }}{{ end }}</span>
       {{ with .comment }}<p>{{ . }}</p>{{ end }}
     </div>

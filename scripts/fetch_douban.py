@@ -28,6 +28,7 @@ if sys.stdout.encoding != 'utf-8':
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'data', 'douban.json')
+POSTER_DIR = os.path.join(ROOT, 'static', 'images', 'posters')
 
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
@@ -140,12 +141,67 @@ def collect(url_tpl, max_pages, cookie, label):
     return items, total
 
 
+def download_posters(items):
+    """海报落地成本地文件：豆瓣图床禁止热链，页面直接引用 img*.doubanio.com 会 418。
+
+    存在且大小正常的跳过（同步每 4 小时跑一次，只有新看过的片子会真的下载）。
+    """
+    os.makedirs(POSTER_DIR, exist_ok=True)
+    new = failed = 0
+    for it in items:
+        url = it.get('poster') or ''
+        if not url:
+            continue
+        dest = os.path.join(POSTER_DIR, '%s.jpg' % it['id'])
+        if os.path.exists(dest) and os.path.getsize(dest) > 1024:
+            continue
+        # 图床有多个镜像（img1/img2/img3/img9），单个域名可能返回 ~1KB 的 JS 反爬页面
+        # 而不是图片（实测 img9 对部分片子的图稳定给挑战页，换 img1 直接就拿到）。
+        mh = re.match(r'https://(img\d+)\.doubanio\.com', url)
+        urls = [url]
+        if mh:
+            urls += [url.replace(mh.group(0), 'https://%s.doubanio.com' % h)
+                     for h in ('img1', 'img2', 'img3', 'img9') if h != mh.group(1)]
+        body = None
+        for u in urls:
+            try:
+                req = urllib.request.Request(u, headers={
+                    'User-Agent': UA,
+                    'Referer': 'https://movie.douban.com/mine',
+                })
+                with urllib.request.urlopen(req, timeout=30, context=CTX) as r:
+                    candidate = r.read()
+                if candidate[:2] == b'\xff\xd8' and len(candidate) > 1024:
+                    body = candidate
+                    break
+            except Exception:
+                pass
+            time.sleep(random.uniform(0.5, 1.0))
+        if body is None:
+            failed += 1
+            if failed <= 3:
+                print('  poster %s failed: no image from any mirror' % it['id'])
+            continue
+        with open(dest, 'wb') as f:
+            f.write(body)
+        new += 1
+        time.sleep(random.uniform(0.4, 1.0))
+    print('  posters: %d new, %d failed, %d items' % (new, failed, len(items)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--user', default='d2278827')
     ap.add_argument('--pages', type=int, default=4, help='看过列表抓前 N 页（每页 15 条）')
     ap.add_argument('--out', default=OUT)
+    ap.add_argument('--posters-only', action='store_true',
+                    help='不抓列表，只把现有 JSON 里缺的海报补下载下来')
     a = ap.parse_args()
+
+    if a.posters_only:
+        with open(a.out, encoding='utf-8') as f:
+            download_posters(json.load(f).get('items') or [])
+        return
 
     cookie = load_cookie()
     collect_tpl = ('https://movie.douban.com/people/%s/collect'
@@ -178,6 +234,8 @@ def main():
     with open(a.out, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print('wrote', a.out)
+
+    download_posters(items)
 
 
 if __name__ == '__main__':
