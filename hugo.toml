@@ -75,6 +75,12 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
         name = "douban"
         url = "https://www.douban.com/people/d2278827/"
       [[languages.zh.params.socialIcons]]
+        name = "orcid"
+        url = "https://orcid.org/0009-0001-7869-3957"
+      [[languages.zh.params.socialIcons]]
+        name = "researchgate"
+        url = "https://www.researchgate.net/profile/Hao-Yang-126"
+      [[languages.zh.params.socialIcons]]
         name = "rss"
         url = "index.xml"
     [[languages.zh.menu.main]]
@@ -102,13 +108,17 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       url = "/movies/"
       weight = 5
     [[languages.zh.menu.main]]
+      name = "论文"
+      url = "/publications/"
+      weight = 7
+    [[languages.zh.menu.main]]
       name = "归档"
       url = "/archives/"
-      weight = 7
+      weight = 8
     [[languages.zh.menu.main]]
       name = "关于"
       url = "/about/"
-      weight = 8
+      weight = 9
 
   # ── 英文（/en/ 前缀）────────────────────────────────────────
   [languages.en]
@@ -145,6 +155,12 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
         name = "douban"
         url = "https://www.douban.com/people/d2278827/"
       [[languages.en.params.socialIcons]]
+        name = "orcid"
+        url = "https://orcid.org/0009-0001-7869-3957"
+      [[languages.en.params.socialIcons]]
+        name = "researchgate"
+        url = "https://www.researchgate.net/profile/Hao-Yang-126"
+      [[languages.en.params.socialIcons]]
         name = "rss"
         url = "index.xml"
     [[languages.en.menu.main]]
@@ -172,13 +188,17 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       url = "/movies/"
       weight = 5
     [[languages.en.menu.main]]
+      name = "Publications"
+      url = "/publications/"
+      weight = 7
+    [[languages.en.menu.main]]
       name = "Archive"
       url = "/archives/"
-      weight = 7
+      weight = 8
     [[languages.en.menu.main]]
       name = "About"
       url = "/about/"
-      weight = 8
+      weight = 9
 
 # ── 站内搜索索引（每语言一份 /index.json）────────────────────
 [outputs]

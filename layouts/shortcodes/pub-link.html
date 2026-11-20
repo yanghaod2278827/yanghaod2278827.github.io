@@ -1,0 +1,10 @@
+{{/* 关于页里的论文入口：数字来自 data/publications.json */}}
+{{ with hugo.Data.publications }}
+{{ $link := "publications/" | relLangURL }}
+<span class="pub-link">{{ i18n "pubAbout" }}
+  <a href="{{ $link }}">{{ i18n "pubCount" }}</a>（{{ .count }}）{{ i18n "pubAboutTail" }}
+  <a href="https://orcid.org/{{ .orcid }}" target="_blank" rel="noopener me">ORCID</a> ·
+  <a href="https://www.researchgate.net/profile/Hao-Yang-126" target="_blank" rel="noopener me">ResearchGate</a></span>
+{{ else }}
+<span class="pub-link">{{ i18n "pubMissing" }}</span>
+{{ end }}

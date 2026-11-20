@@ -19,6 +19,10 @@ title: 关于
 
 {{< activity-stats >}}
 
+## 论文
+
+{{< pub-link >}}
+
 ## 观影
 
 {{< douban-stats >}}

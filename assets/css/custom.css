@@ -136,3 +136,22 @@
 .home-content .pm-bio { margin: 0 0 1.4rem; }
 
 .home-content + .post-entry { margin-top: 0; }
+
+/* ── 论文页 ─────────────────────────────────────────────── */
+.pm-pubs { list-style: none; margin: 0; padding: 0; }
+.pm-pubs li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pm-pubs li:last-child { border-bottom: 0; }
+.pm-pub-meta {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+  margin-bottom: 4px; font-size: .8rem; color: var(--secondary);
+}
+.pm-year {
+  padding: 1px 9px; border: 1px solid var(--border); border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.pm-pub-title { display: block; font-weight: 600; line-height: 1.5; }
+.pm-pub-title:hover { color: var(--secondary); }
+.pm-doi { display: block; margin-top: 4px; font-size: .76rem; color: var(--secondary); word-break: break-all; }

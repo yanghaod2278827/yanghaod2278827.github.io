@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ $d := hugo.Data.publications }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with (or .Content .Description) }}<div class="page-intro">{{ . }}</div>{{ end }}
+</header>
+
+{{ with $d }}
+<ul class="pm-pubs">
+  {{ range .items }}
+  <li>
+    <div class="pm-pub-meta"><span class="pm-year">{{ .year }}</span><span class="pm-journal">{{ .journal }}</span></div>
+    <a class="pm-pub-title" href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+    {{ with .doi }}<span class="pm-doi">DOI: {{ . }}</span>{{ end }}
+  </li>
+  {{ end }}
+</ul>
+<p class="pm-more">
+  <a class="pm-btn" href="https://orcid.org/{{ .orcid }}" target="_blank" rel="noopener me">ORCID</a>
+  <span>{{ .count }} {{ i18n "pubCount" }}</span>
+</p>
+{{ else }}
+<p>{{ i18n "pubMissing" }}</p>
+{{ end }}
+{{ end }}

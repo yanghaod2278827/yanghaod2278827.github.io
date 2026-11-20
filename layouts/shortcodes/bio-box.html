@@ -3,6 +3,11 @@
 <div class="pm-bio">
   <div class="pm-bio-head"><span></span>about.txt</div>
   <pre class="pm-bio-text">{{ . }}</pre>
+  {{ with hugo.Data.publications }}
+  <a class="pm-bio-foot" href="{{ "publications/" | relLangURL }}">
+    <span>{{ i18n "pubBio" (dict "n" .count) }}</span><span aria-hidden="true">→</span>
+  </a>
+  {{ end }}
   {{ with hugo.Data.activity }}
   <a class="pm-bio-foot" href="{{ "activity/" | relLangURL }}">
     <span>{{ i18n "activityBio" (dict "n" (len .items)) }}</span><span aria-hidden="true">→</span>

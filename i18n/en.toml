@@ -126,3 +126,18 @@ other = "Newer post"
 
 [olderPost]
 other = "Older post"
+
+[pubCount]
+other = "published papers"
+
+[pubMissing]
+other = "No publication data yet — run python3 scripts/fetch_orcid.py"
+
+[pubBio]
+other = "{{ .n }} published papers"
+
+[pubAbout]
+other = "Peer-reviewed papers with DOIs live on the"
+
+[pubAboutTail]
+other = " page, synced from ORCID. Profiles:"

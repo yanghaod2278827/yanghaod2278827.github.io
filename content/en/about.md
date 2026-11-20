@@ -19,6 +19,10 @@ To dig through older posts use the [Archive](/en/archives/) (by year), [Tags](/e
 
 {{< activity-stats >}}
 
+## Papers
+
+{{< pub-link >}}
+
 ## Movies
 
 {{< douban-stats >}}

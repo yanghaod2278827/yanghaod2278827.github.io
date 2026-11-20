@@ -126,3 +126,18 @@ other = "较新一篇"
 
 [olderPost]
 other = "较早一篇"
+
+[pubCount]
+other = "篇已发表"
+
+[pubMissing]
+other = "还没有论文数据，先跑 python3 scripts/fetch_orcid.py"
+
+[pubBio]
+other = "发表论文 {{ .n }} 篇"
+
+[pubAbout]
+other = "已发表的论文（含 DOI）整理在"
+
+[pubAboutTail]
+other = "页，由 ORCID 公开记录同步；学术主页："
