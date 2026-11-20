@@ -23,11 +23,15 @@ Hugo 需要 extended 版（主题用到 SCSS 处理）。
 python3 scripts/fetch_data.py      # GitHub 仓库 → data/github.json + data/projects.json
 python3 scripts/fetch_douban.py    # 豆瓣「看过」→ data/douban.json（需要豆瓣 cookie）
 python3 scripts/fetch_activity.py  # 各平台动态 → data/activity.json（需要本机 RSSHub）
+python3 scripts/fetch_orcid.py     # ORCID 公开记录 → data/publications.json
+python3 scripts/fetch_douyin.py    # 抖音主页作品 → data/douyin.json（Playwright + cookie）
 python3 scripts/make_covers.py     # 生成文章/项目封面 PNG → static/images/covers/
 ```
 
 - **豆瓣**：cookie 走环境变量 `DOUBAN_COOKIE` 或 `~/douban_cookie.txt`（不进仓库）
 - **动态**：读本机自建的 RSSHub（`127.0.0.1:1200`），源包括豆瓣广播、GitHub、B站；**本站仓库的 push 被排除**，否则「同步脚本提交数据 → 部署 → 新 push 事件 → 再提交」会自激
+- **抖音**：不能在 RSSHub 里跑（该路由要 Puppeteer），改由 `fetch_douyin.py` 用 Playwright 打开主页、拦截页面自己发出的作品接口；cookie 放 `~/douyin_cookies.txt`（Netscape 格式，不进仓库）
+- **论文**：`fetch_orcid.py` 读 ORCID 公开记录，只会有正式发表、带 DOI 的条目
 - **抓取失败**只打印警告并保留旧 JSON，不会让构建失败
 
 ## 改内容

@@ -34,8 +34,13 @@ SOURCES = [
     # 豆瓣广播路由只认整数型 id（字母型 d2278827 会 404）：
     # 从 https://www.douban.com/people/<id>/ 的头像链接 ul122411510-*.jpg 取 122411510
     {'key': 'douban', 'label': '豆瓣', 'route': '/douban/people/122411510/status'},
-    {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827'},
+    # 本站数据每次同步都会产生 push，这些会被 EXCLUDE_REPOS 过滤掉；
+    # 因此多取一些，免得真实项目活动被挤出窗口
+    {'key': 'github', 'label': 'GitHub', 'route': '/github/activity/yanghaod2278827', 'limit': 30},
     {'key': 'bilibili', 'label': 'B站', 'route': '/bilibili/user/video/357798787'},
+    # 抖音没有可用的 RSSHub 路由（需要 Puppeteer），改由 fetch_douyin.py 用 Playwright
+    # 拦截页面自带的 post 接口，结果落在 data/douyin.json，这里只负责读
+    {'key': 'douyin', 'label': '抖音', 'type': 'douyin_local', 'limit': 8},
 ]
 
 
@@ -56,6 +61,31 @@ def localize(iso):
         return dt.astimezone(TZ).strftime('%Y-%m-%d %H:%M')
     except Exception:
         return iso[:16].replace('T', ' ')
+
+
+
+DOUYIN_JSON = os.path.join(ROOT, 'data', 'douyin.json')
+
+
+def load_douyin(limit):
+    """读 fetch_douyin.py 的产物；取最近 limit 条。"""
+    if not os.path.exists(DOUYIN_JSON):
+        raise FileNotFoundError('data/douyin.json missing (run scripts/fetch_douyin.py)')
+    data = json.load(open(DOUYIN_JSON, encoding='utf-8'))
+    out = []
+    for it in (data.get('items') or [])[:limit]:
+        desc = (it.get('desc') or '').strip()
+        # 描述里常带一串话题标签，标题只留前半句，完整文字放正文
+        head = desc.split('#')[0].strip() or desc
+        out.append({
+            'title': head[:120] or '抖音作品',
+            'film': '',
+            'text': desc[:400] if desc != head else '',
+            'link': it.get('url') or '',
+            'date': it.get('date') or '',
+            'image': '',
+        })
+    return out
 
 
 def fetch(route, per_source, source=''):
@@ -131,14 +161,18 @@ def fetch(route, per_source, source=''):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--per-source', type=int, default=15)
-    ap.add_argument('--keep', type=int, default=30)
+    ap.add_argument('--keep', type=int, default=40)
     ap.add_argument('--out', default=OUT)
     a = ap.parse_args()
 
     merged, failed = [], []
     for s in SOURCES:
         try:
-            got = fetch(s['route'], a.per_source, s['key'])
+            if s.get('type') == 'douyin_local':
+                got = load_douyin(s.get('limit', a.per_source))
+                print('%-8s %d items' % (s['key'], len(got)))
+            else:
+                got = fetch(s['route'], s.get('limit', a.per_source), s['key'])
             for it in got:
                 it['source'] = s['key']
                 it['source_label'] = s['label']

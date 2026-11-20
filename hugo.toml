@@ -81,6 +81,9 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
         name = "researchgate"
         url = "https://www.researchgate.net/profile/Hao-Yang-126"
       [[languages.zh.params.socialIcons]]
+        name = "googlescholar"
+        url = "https://scholar.google.com/citations?user=eClJNEMAAAAJ&hl=zh-CN"
+      [[languages.zh.params.socialIcons]]
         name = "rss"
         url = "index.xml"
     [[languages.zh.menu.main]]
@@ -160,6 +163,9 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       [[languages.en.params.socialIcons]]
         name = "researchgate"
         url = "https://www.researchgate.net/profile/Hao-Yang-126"
+      [[languages.en.params.socialIcons]]
+        name = "googlescholar"
+        url = "https://scholar.google.com/citations?user=eClJNEMAAAAJ&hl=zh-CN"
       [[languages.en.params.socialIcons]]
         name = "rss"
         url = "index.xml"
