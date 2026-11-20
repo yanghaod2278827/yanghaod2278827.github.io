@@ -89,19 +89,14 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       [[languages.zh.params.socialIcons]]
         name = "rss"
         url = "index.xml"
-    # ── 面试季临时隐藏（2026-11-20）：去掉下面 6 行行首的 "# " 即可恢复导航项 ──
-    # [[languages.zh.menu.main]]
-    #   name = "动态"
-    #   url = "/activity/"
-    #   weight = 2
-    # [[languages.zh.menu.main]]
-    #   name = "观影"
-    #   url = "/movies/"
-    #   weight = 5
     [[languages.zh.menu.main]]
       name = "博客"
       url = "/posts/"
       weight = 1
+    [[languages.zh.menu.main]]
+      name = "动态"
+      url = "/activity/"
+      weight = 2
     [[languages.zh.menu.main]]
       name = "笔记"
       url = "/notebook/"
@@ -110,6 +105,10 @@ claude-worklog-dida — 从会话和文件时间戳还原每天做过的事
       name = "项目"
       url = "/projects/"
       weight = 3
+    [[languages.zh.menu.main]]
+      name = "观影"
+      url = "/movies/"
+      weight = 5
     [[languages.zh.menu.main]]
       name = "论文"
       url = "/publications/"
@@ -169,19 +168,14 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       [[languages.en.params.socialIcons]]
         name = "rss"
         url = "index.xml"
-    # ── 面试季临时隐藏（2026-11-20）：去掉下面 6 行行首的 "# " 即可恢复导航项 ──
-    # [[languages.en.menu.main]]
-    #   name = "Activity"
-    #   url = "/activity/"
-    #   weight = 2
-    # [[languages.en.menu.main]]
-    #   name = "Movies"
-    #   url = "/movies/"
-    #   weight = 5
     [[languages.en.menu.main]]
       name = "Blog"
       url = "/posts/"
       weight = 1
+    [[languages.en.menu.main]]
+      name = "Activity"
+      url = "/activity/"
+      weight = 2
     [[languages.en.menu.main]]
       name = "Notes"
       url = "/notebook/"
@@ -190,6 +184,10 @@ This site is open source too: Hugo + GitHub Actions, every number script-generat
       name = "Projects"
       url = "/projects/"
       weight = 3
+    [[languages.en.menu.main]]
+      name = "Movies"
+      url = "/movies/"
+      weight = 5
     [[languages.en.menu.main]]
       name = "Publications"
       url = "/publications/"

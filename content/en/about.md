@@ -17,20 +17,15 @@ To dig through older posts use the [Archive](/en/archives/) (by year), [Tags](/e
 
 ## Activity
 
-<!-- 面试季临时隐藏（2026-11-20）
 {{< activity-stats >}}
--->
-
 
 ## Papers
 
 {{< pub-link >}}
 
-<!-- 面试季临时隐藏（2026-11-20）
 ## Movies
 
 {{< douban-stats >}}
--->
 
 ## Contact
 
