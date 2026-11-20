@@ -8,15 +8,17 @@
     <span>{{ i18n "pubBio" (dict "n" .count) }}</span><span aria-hidden="true">→</span>
   </a>
   {{ end }}
+  {{/* 面试季临时隐藏（2026-11-20）：动态入口
   {{ with hugo.Data.activity }}
   <a class="pm-bio-foot" href="{{ "activity/" | relLangURL }}">
     <span>{{ i18n "activityBio" (dict "n" (len .items)) }}</span><span aria-hidden="true">→</span>
   </a>
-  {{ end }}
+  {{ end }} */}}
+  {{/* 面试季临时隐藏（2026-11-20）：观影入口
   {{ with hugo.Data.douban }}
   <a class="pm-bio-foot" href="{{ "movies/" | relLangURL }}">
     <span>{{ i18n "doubanBio" (dict "watched" .stats.watched "wish" .stats.wish) }}</span><span aria-hidden="true">→</span>
   </a>
-  {{ end }}
+  {{ end }} */}}
 </div>
 {{ end }}

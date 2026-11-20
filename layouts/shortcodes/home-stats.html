@@ -4,15 +4,17 @@
 <div class="pm-stats">
   <a href="{{ "posts/" | relLangURL }}"><strong>{{ len $posts }}</strong><span>{{ i18n "statPosts" }}</span></a>
   <a href="{{ "notebook/" | relLangURL }}"><strong>{{ len $notes }}</strong><span>{{ i18n "statNotes" }}</span></a>
+  {{/* 面试季临时隐藏（2026-11-20）：观影卡。恢复时还原这两行 {{ with hugo.Data.douban }} 块
   {{ with hugo.Data.douban }}
   <a href="{{ "movies/" | relLangURL }}"><strong>{{ .stats.watched }}</strong><span>{{ i18n "statMovies" }}</span></a>
-  {{ end }}
+  {{ end }} */}}
   {{ with hugo.Data.publications }}
   <a href="{{ "publications/" | relLangURL }}"><strong>{{ .count }}</strong><span>{{ i18n "statPublications" }}</span></a>
   {{ end }}
+  {{/* 面试季临时隐藏（2026-11-20）：动态卡。恢复时还原下面这个 {{ with hugo.Data.activity }} 块
   {{ with hugo.Data.activity }}
   <a href="{{ "activity/" | relLangURL }}"><strong>{{ len .items }}</strong><span>{{ i18n "statActivity" }}</span></a>
-  {{ end }}
+  {{ end }} */}}
   {{ with hugo.Data.github }}
   <a href="https://github.com/{{ .login }}" target="_blank" rel="noopener"><strong>{{ .total_stars }}</strong><span>{{ i18n "statStars" }}</span></a>
   {{ end }}
