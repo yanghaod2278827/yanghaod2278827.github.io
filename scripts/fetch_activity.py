@@ -97,6 +97,41 @@ def load_douban_watched(days=DOUBAN_LOCAL_DAYS, limit=15):
     return out
 
 
+DOUBAN_EDITS = os.path.join(ROOT, 'data', 'douban_edits.json')
+
+
+def load_douban_edits(limit=10):
+    """scan_douban_edits.py 轮转全量扫描发现的老条目改动 → 「重新评价」动态。"""
+    if not os.path.exists(DOUBAN_EDITS):
+        return []
+    try:
+        data = json.load(open(DOUBAN_EDITS, encoding='utf-8'))
+    except Exception:
+        return []
+    out = []
+    for e in (data.get('items') or [])[:limit]:
+        bits = []
+        old, new = int(e.get('old_rating') or 0), int(e.get('rating') or 0)
+        if old != new:
+            if old and new:
+                bits.append('评分 %d → %d 星' % (old, new))
+            elif new:
+                bits.append('补了 %d 星' % new)
+            else:
+                bits.append('删掉了评分')
+        if e.get('comment_changed'):
+            bits.append('短评有改动')
+        out.append({
+            'title': '重新评价：' + (e.get('title') or '')[:60],
+            'film': '',
+            'text': '；'.join(bits) or '标记信息有改动',
+            'link': 'https://movie.douban.com/subject/%s/' % e.get('id'),
+            'date': e.get('detected') or e.get('date') or '',
+            'image': '',
+        })
+    return out
+
+
 def load_douyin(limit):
     """读 fetch_douyin.py 的产物；取最近 limit 条。"""
     if not os.path.exists(DOUYIN_JSON):
@@ -233,6 +268,15 @@ def main():
             have.append(it['title'])
             added += 1
         print('douban   %d watched without a broadcast' % added)
+
+    # 老条目被改过评分/短评（scan_douban_edits.py 轮转全量扫描的结果）
+    edits = load_douban_edits()
+    if edits:
+        for it in edits:
+            it['source'] = 'douban'
+            it['source_label'] = '豆瓣'
+        merged.extend(edits)
+        print('douban   %d edited rating/comment' % len(edits))
 
     # 单个源临时失败（上游 503、网络抖动）时，沿用该源上一份 JSON 的条目。
     # 否则一次抖动就会把整块时间线从站点上抹掉：2026-11-20 实测 18:57 三源同时
