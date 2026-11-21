@@ -121,10 +121,13 @@ def load_douban_edits(limit=10):
                 bits.append('删掉了评分')
         if e.get('comment_changed'):
             bits.append('短评有改动')
+        text = '；'.join(bits) or '标记信息有改动'
+        if e.get('note'):
+            text = e['note'] + ('，现评 %d 星' % new if new else '')
         out.append({
             'title': '重新评价：' + (e.get('title') or '')[:60],
             'film': '',
-            'text': '；'.join(bits) or '标记信息有改动',
+            'text': text,
             'link': 'https://movie.douban.com/subject/%s/' % e.get('id'),
             'date': e.get('detected') or e.get('date') or '',
             'image': '',

@@ -1,35 +1,43 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""轮转扫描豆瓣「看过」全量列表，检测老条目被改过的评分/短评。
+"""轮转扫描豆瓣全量「书影音」记录，检测老条目被改过的评分/短评。
 
-主列表 fetch_douban.py 只抓最近 45 条（按看过日期倒序），给很久以前标过的电影
-改评价不会进窗口，站点和动态都看不到。本脚本每次抓 N 页（默认 3），把全量条目
-的最新状态存进 ~/Projects/个人网站维护/data/douban_snapshot.json，与上一轮比；
-发现 rating / comment / date 变化就写 data/douban_edits.json，供
+主列表 fetch_douban.py 只抓「看过」最近 45 条（按看过日期倒序），给很久以前标过
+的电影改评价不会进窗口，站点和动态都看不到。
+
+本脚本走豆瓣 App 的 rexxar 接口（一次 50 条、带 rating/comment/create_time），
+每次抓 N 页，把全量状态存进 ~/Projects/个人网站维护/data/douban_snapshot.json，
+与上一轮比；发现 rating/comment 变化就写 data/douban_edits.json，供
 fetch_activity.py 生成「重新评价」动态。
 
-124 页、每次 3 页、每天按 4 小时节流跑一轮 → 约一周转完一遍全量。
+为什么不用网页列表：网页一页 15 条，124 页；接口一页 50 条，全量约 62 页，
+默认每次 8 页 → 约 1.5 天转完一遍。接口的 create_time 是「标记时间」，
+改评价不会变，也没有 updated_at，所以只能靠值比对（基线建立之后的改动）。
 
 用法：
-    python3 scripts/scan_douban_edits.py [--user d2278827] [--pages 3]
+    python3 scripts/scan_douban_edits.py [--user d2278827] [--pages 8]
                                          [--snapshot PATH] [--out PATH]
-退出码：0 = 正常（含被频控提前结束）；1 = 快照读写失败。
+退出码：0 = 正常（含被限流提前结束）；1 = 快照读写失败。
 """
 import argparse
 import json
 import os
 import random
+import re
 import sys
 import time
+import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import fetch_douban as fd  # noqa: E402  复用 cookie / 抓取 / 解析
+import fetch_douban as fd  # noqa: E402  复用 cookie 与 SSL 上下文
 
 ROOT = fd.ROOT
 SNAPSHOT = os.path.expanduser('~/Projects/个人网站维护/data/douban_snapshot.json')
 OUT = os.path.join(ROOT, 'data', 'douban_edits.json')
-TPL = ('https://movie.douban.com/people/%s/collect'
-       '?start=%%d&sort=time&mode=grid&type=all&filter=all')
+API = ('https://m.douban.com/rexxar/api/v2/user/%s/interests'
+       '?type=movie&count=50&start=%d')
+UA = ('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) '
+      'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1')
 MAX_EVENTS = 30
 
 
@@ -53,33 +61,51 @@ def save_json(path, data):
     os.replace(tmp, path)
 
 
-def compare(page_items, snap, detected):
+def norm_comment(s):
+    return re.sub(r'\s+', ' ', s or '').strip()
+
+
+def fetch_page(user, start, cookie):
+    req = urllib.request.Request(API % (user, start), headers={
+        'User-Agent': UA,
+        'Cookie': cookie,
+        'Referer': 'https://m.douban.com/movie/people/%s/collect' % user,
+    })
+    with urllib.request.urlopen(req, timeout=40, context=fd.CTX) as r:
+        return json.loads(r.read().decode('utf-8', 'replace'))
+
+
+def compare(interests, snap, detected):
     """把这一页和快照比，更新快照，返回被改过的条目。
 
-    snap 结构：{subject_id: {"rating": int, "date": str, "comment": str}}
+    snap 结构：{subject_id: {"rating": int, "comment": str, "date": str}}
     第一次见到的条目只入快照，不算改动。
     """
     events = []
-    for it in page_items:
-        sid = it.get('id')
+    for it in interests:
+        subj = it.get('subject') or {}
+        sid = str(subj.get('id') or '')
         if not sid:
             continue
         cur = {
-            'rating': int(it.get('rating') or 0),
-            'date': (it.get('date') or '')[:10],
-            'comment': (it.get('comment') or '').strip(),
+            'rating': int((it.get('rating') or {}).get('star_count') or 0),
+            'comment': norm_comment(it.get('comment')),
+            'date': (it.get('create_time') or '')[:10],
         }
         old = snap.get(sid)
         snap[sid] = cur
-        if old is None or old == cur:
+        if old is None:
             continue
-        title = (it.get('title') or '').split(' / ')[0].strip()[:80]
+        if int(old.get('rating') or 0) == cur['rating'] and \
+                norm_comment(old.get('comment')) == cur['comment']:
+            continue
+        title = (subj.get('title') or '').strip()[:80] or sid
         events.append({
             'id': sid,
-            'title': title or sid,
+            'title': title,
             'rating': cur['rating'],
             'old_rating': int(old.get('rating') or 0),
-            'comment_changed': (old.get('comment') or '') != cur['comment'],
+            'comment_changed': norm_comment(old.get('comment')) != cur['comment'],
             'date': cur['date'],
             'detected': detected,
         })
@@ -89,55 +115,50 @@ def compare(page_items, snap, detected):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--user', default='d2278827')
-    ap.add_argument('--pages', type=int, default=3, help='本次扫几页（每页 15 条）')
+    ap.add_argument('--pages', type=int, default=8, help='本次抓几页（每页 50 条）')
     ap.add_argument('--snapshot', default=SNAPSHOT)
     ap.add_argument('--out', default=OUT)
     a = ap.parse_args()
 
     state = load_json(a.snapshot, {})
     snap = state.get('items') or {}
-    total = int(state.get('total_pages') or 0)
-    page = int(state.get('next_page') or 0)
+    total = int(state.get('total') or 0)
+    start = int(state.get('next_start') or 0)
 
     cookie = fd.load_cookie()
     detected = time.strftime('%Y-%m-%d %H:%M')
-    events, scanned = [], []
+    events, scanned = [], 0
 
     for _ in range(a.pages):
         try:
-            html = fd.fetch((TPL % a.user) % (page * 15), cookie)
+            data = fetch_page(a.user, start, cookie)
         except Exception as e:
-            print('page %d fetch error: %s' % (page + 1, e))
+            print('page at %d failed: %s' % (start, e))
             break
-        if 'TCaptcha' in html or '检测到有异常请求' in html:
-            print('CAPTCHA at page %d; stopping' % (page + 1))
+        total = int(data.get('total') or total or 0)
+        interests = data.get('interests') or []
+        if not interests:
+            print('empty page at %d; stopping' % start)
             break
-        tp = fd.total_pages(html)
-        if tp:
-            total = tp
-        items = fd.parse_items(html)
-        if not items:
-            print('page %d empty; stopping' % (page + 1))
-            break
-        events += compare(items, snap, detected)
-        scanned.append(page + 1)  # 1-based，便于读日志
-        page += 1
-        if total and page >= total:
-            page = 0
-        time.sleep(random.uniform(1.5, 3.0))
+        events += compare(interests, snap, detected)
+        scanned += 1
+        start += len(interests)
+        if total and start >= total:
+            start = 0
+        time.sleep(random.uniform(0.6, 1.2))
 
     try:
         save_json(a.snapshot, {
             'updated': detected,
-            'total_pages': total,
-            'next_page': page,
+            'source': 'rexxar/interests',
+            'total': total,
+            'next_start': start,
             'items': snap,
         })
     except Exception as e:
         print('cannot write snapshot: %s' % e)
         return 1
 
-    # 合并进 douban_edits.json（保留最近 MAX_EVENTS 条；同一条目同一次检测不重复）
     old = load_json(a.out, {}).get('items') or []
     seen = {(e.get('id'), e.get('detected')) for e in events}
     merged = events + [e for e in old if (e.get('id'), e.get('detected')) not in seen]
@@ -151,9 +172,8 @@ def main():
             print('cannot write edits: %s' % e)
             return 1
 
-    span = ('%d-%d' % (scanned[0], scanned[-1])) if scanned else 'none'
-    print('scanned pages %s of %d; snapshot %d items; %d edit(s)'
-          % (span, total or 0, len(snap), len(events)))
+    print('scanned %d page(s) up to %d/%d; snapshot %d items; %d edit(s)'
+          % (scanned, start, total or 0, len(snap), len(events)))
     for e in events[:5]:
         print('  * %s (%s): %d -> %d%s'
               % (e['title'], e['date'], e['old_rating'], e['rating'],
