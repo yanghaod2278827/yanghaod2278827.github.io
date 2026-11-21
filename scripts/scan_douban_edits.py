@@ -101,7 +101,7 @@ def main():
 
     cookie = fd.load_cookie()
     detected = time.strftime('%Y-%m-%d %H:%M')
-    events, fetched = [], 0
+    events, scanned = [], []
 
     for _ in range(a.pages):
         try:
@@ -120,7 +120,7 @@ def main():
             print('page %d empty; stopping' % (page + 1))
             break
         events += compare(items, snap, detected)
-        fetched += 1
+        scanned.append(page + 1)  # 1-based，便于读日志
         page += 1
         if total and page >= total:
             page = 0
@@ -151,8 +151,9 @@ def main():
             print('cannot write edits: %s' % e)
             return 1
 
-    print('scanned pages %d-%d of %d; snapshot %d items; %d edit(s)'
-          % (max(1, page - fetched + 1), max(1, page), total or 0, len(snap), len(events)))
+    span = ('%d-%d' % (scanned[0], scanned[-1])) if scanned else 'none'
+    print('scanned pages %s of %d; snapshot %d items; %d edit(s)'
+          % (span, total or 0, len(snap), len(events)))
     for e in events[:5]:
         print('  * %s (%s): %d -> %d%s'
               % (e['title'], e['date'], e['old_rating'], e['rating'],
