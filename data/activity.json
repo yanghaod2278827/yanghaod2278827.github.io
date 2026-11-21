@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "sources": [
     "douban",
     "github",
@@ -261,28 +261,6 @@
       "count": 1
     },
     {
-      "title": "泡泡糖女孩",
-      "film": "",
-      "text": "2026 金鸡：儿童视角讲述家庭生活的故事。不要太快长大，大人都喜欢撒谎。从儿童视角看男人和女人在生活中的一些典型表现，男人出轨，女人也会攀附男人，有点刻板印象，最后也有改变的人物弧光。妈妈把姐姐带到有新男朋友的家里，那一段看的我有点不适，孩子过早接触大人世界太残忍了。新加坡的中英混杂的语言也挺有趣的。小孩的演技很好，让人心疼。虽然看起来是儿童片，但讲的却是现实的成人话题，有些情节有点搞笑，但大多数情节都透露出对孩子残忍的伤害。没准备好当父母就不该生孩子。整体来说，值得一看。",
-      "link": "https://movie.douban.com/subject/37030720/",
-      "date": "2026-11-07",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
-      "count": 1
-    },
-    {
-      "title": "列宁格勒牛仔征美记",
-      "film": "",
-      "text": "无厘头的度把握的很好，不尴尬，摇滚的精神不仅仅是脸皮厚和坚持，更在于找到适合自己的天地。从结局来了，有点终极醋包饺的感觉，很酷的电影。",
-      "link": "https://movie.douban.com/subject/1316560/",
-      "date": "2026-11-07",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
-      "count": 1
-    },
-    {
       "title": "#摄影 #自拍 #焦段 #美颜",
       "film": "",
       "text": "",
@@ -442,6 +420,28 @@
       "text": "怎么样？好在哪里？（有剧透）",
       "link": "https://www.bilibili.com/video/BV1Sr421H71Z",
       "date": "2024-03-10 20:06",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "【自我心理调节】在意别人看法=承认别人看法的权威性",
+      "film": "",
+      "text": "",
+      "link": "https://www.bilibili.com/video/BV1wy421v7EN",
+      "date": "2024-03-09 14:44",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "【延时摄影】黄昏转黑夜，日落与车流",
+      "film": "",
+      "text": "",
+      "link": "https://www.bilibili.com/video/BV1dN4y147CA",
+      "date": "2023-12-22 22:42",
       "image": "",
       "source": "bilibili",
       "source_label": "B站",
