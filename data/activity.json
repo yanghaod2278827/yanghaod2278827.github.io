@@ -195,17 +195,6 @@
       "count": 1
     },
     {
-      "title": "claude-worklog-dida",
-      "film": "",
-      "text": "",
-      "link": "https://github.com/yanghaod2278827/claude-worklog-dida/compare/88213167d3...dce7fa6555",
-      "date": "2026-11-18 10:11",
-      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
-      "source": "github",
-      "source_label": "GitHub",
-      "count": 1
-    },
-    {
       "title": "金玉满堂 金玉滿堂‎ (1995)",
       "film": "金玉满堂 金玉滿堂‎ (1995)",
       "text": "合家欢电影，但没怎么戳中我的笑点，一群大牌演员耍宝，剧情还算自洽，厨艺比拼阶段有点意思",
@@ -442,6 +431,17 @@
       "text": "",
       "link": "https://www.bilibili.com/video/BV1dN4y147CA",
       "date": "2023-12-22 22:42",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "【延时摄影】华大窗外日落时分",
+      "film": "",
+      "text": "华侨大学窗外日落时分全景延时摄影",
+      "link": "https://www.bilibili.com/video/BV1AN4y187v7",
+      "date": "2023-12-18 22:32",
       "image": "",
       "source": "bilibili",
       "source_label": "B站",
