@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "sources": [
     "douban",
     "github",
@@ -93,17 +93,6 @@
       "image": "",
       "source": "douban",
       "source_label": "豆瓣",
-      "count": 1
-    },
-    {
-      "title": "claude-worklog-dida",
-      "film": "",
-      "text": "",
-      "link": "https://github.com/yanghaod2278827/claude-worklog-dida/compare/dce7fa6555...0beb08acf4",
-      "date": "2026-11-20 11:00",
-      "image": "https://avatars.githubusercontent.com/u/67933201?s=30&v=4",
-      "source": "github",
-      "source_label": "GitHub",
       "count": 1
     },
     {
@@ -442,6 +431,17 @@
       "text": "华侨大学窗外日落时分全景延时摄影",
       "link": "https://www.bilibili.com/video/BV1AN4y187v7",
       "date": "2023-12-18 22:32",
+      "image": "",
+      "source": "bilibili",
+      "source_label": "B站",
+      "count": 1
+    },
+    {
+      "title": "窗口延时摄影",
+      "film": "",
+      "text": "",
+      "link": "https://www.bilibili.com/video/BV1Z94y1P7hu",
+      "date": "2023-12-11 22:41",
       "image": "",
       "source": "bilibili",
       "source_label": "B站",
