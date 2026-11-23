@@ -1,12 +1,22 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "user": "d2278827",
   "stats": {
-    "watched": 1858,
+    "watched": 1859,
     "wish": 1218,
-    "recent_commented": 40
+    "recent_commented": 41
   },
   "items": [
+    {
+      "id": "36778280",
+      "title": "夏日红炎 / Les Roches Rouges / 夏日红岩 / 古惑国之红岩激斗篇(港)",
+      "info": "2026-05-20(戛纳电影节) / 2026-09-23(法国) / Kaylon Lancel / Kelsie Verdeilles / Louise Podolski / Mohamed Coly / Alessandro Piquera / Meryl Pires / 葡萄牙 / 法国 / 意大利 / 西班牙 / 卡塔尔 / 布鲁诺·杜蒙 / 91分钟 / 夏日红炎 / 剧情 / 布鲁诺·杜蒙 Bruno Dumont / 法语",
+      "rating": 4,
+      "date": "2026-11-23",
+      "comment": "2026 金鸡：纯纯儿童片，从头到尾几乎没有成年人戏份，几个儿童演绎了一出成人世界才会有的情感纠葛戏码，很好奇导演是怎么把这些儿童调教的演技这么好的。风景很美，风光为这电影增色不少。",
+      "poster": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2935557577.jpg",
+      "url": "https://movie.douban.com/subject/36778280/"
+    },
     {
       "id": "35235320",
       "title": "两京十五日 / River of No Return",
@@ -446,16 +456,6 @@
       "comment": "虽然是商业爽片，但还是有很多亮点的：1.后面以为要结束，但实际只是第一个高潮结束，内容很足，诚意满满；2.大块头醒来发现父亲被杀去报仇，相当于在原有战局引入外部矛盾，而且大块头本身的矛盾也有转移，这种内部和外部矛盾的引入很有意思；3.弓箭和尼泊尔砍刀的引入，本来武打电影加入武器就已经是出彩点了，这两个武器更是冲击力很强，一把弓箭直接“清空”警局，冷兵器的恐怖实力的另类表现很新颖；4.长时间打斗的动作设计和战场分割，能看出下了一番功夫。",
       "poster": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932757540.jpg",
       "url": "https://movie.douban.com/subject/36877245/"
-    },
-    {
-      "id": "36883114",
-      "title": "家业 / 祯娘传 / 祯娘传奇",
-      "info": "2026-05-17(中国大陆) / 杨紫 / 韩东君 / 吴冕 / 田小洁 / 徐百慧 / 王梓豪 / 谢心 / 李泓良 / 杨斯 / 富大龙 / 中国大陆 / 惠楷栋 / 王成欣 / 45分钟 / 剧情 / 古装 / 熊周虎 / 陆臻豪 / 陈慧 / 陈盐 / 戴勇 Dai Yong / 孙双润 Shuangrun Sun / 顾玥 Yue Gu / 汉语普通话",
-      "rating": 4,
-      "date": "2026-05-25",
-      "comment": "",
-      "poster": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2932320661.jpg",
-      "url": "https://movie.douban.com/subject/36883114/"
     }
   ]
 }
