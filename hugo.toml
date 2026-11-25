@@ -21,7 +21,7 @@ hasCJKLanguage = true
   [markup.goldmark.renderer]
     unsafe = true          # 允许正文里写 HTML（README 风格的表格/图能直接粘）
   [markup.highlight]
-    style = "github"
+    style = "github-dark"
 
 # 与语言无关的参数
 [params]
