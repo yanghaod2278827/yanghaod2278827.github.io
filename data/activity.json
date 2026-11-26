@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "sources": [
     "douban",
     "github",
@@ -7,6 +7,17 @@
     "douyin"
   ],
   "items": [
+    {
+      "title": "接近终点 Sirât‎ (2025)",
+      "film": "接近终点 Sirât‎ (2025)",
+      "text": "2026 风格万相：有点意思，很特别的电影，将音乐和剧情融合的很自然，以公路片的形式讲述了一个反战的故事，表现形式很...",
+      "link": "https://www.douban.com/people/122411510/status/10128457364/?_spm_id=MTIyNDExNTEw",
+      "date": "2026-11-26 22:38",
+      "image": "",
+      "source": "douban",
+      "source_label": "豆瓣",
+      "count": 1
+    },
     {
       "title": "夏日红炎 Les Roches Rouges‎ (2026)",
       "film": "夏日红炎 Les Roches Rouges‎ (2026)",
@@ -210,17 +221,6 @@
       "film": "小丑回魂：欢迎来到德里镇 第一季 IT: Welcome to Derry Season 1‎ (2025)",
       "text": "确实够恐怖，也够反套路，我以为是主角的小男孩二人组，竟然死了",
       "link": "https://www.douban.com/people/122411510/status/10022571804/?_spm_id=MTIyNDExNTEw",
-      "date": "2026-11-09 22:03",
-      "image": "",
-      "source": "douban",
-      "source_label": "豆瓣",
-      "count": 1
-    },
-    {
-      "title": "无敌少侠 第四季 Invincible Season 4‎ (2026)",
-      "film": "无敌少侠 第四季 Invincible Season 4‎ (2026)",
-      "text": "给到夯",
-      "link": "https://www.douban.com/people/122411510/status/10022570650/?_spm_id=MTIyNDExNTEw",
       "date": "2026-11-09 22:03",
       "image": "",
       "source": "douban",
